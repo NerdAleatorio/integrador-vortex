@@ -1,0 +1,21 @@
+
+html, body{
+  width: 100%;
+  heigth: 100%;
+}
+
+
+#header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 1;
+  background: #000000;
+  overflow-y: auto;
+  height: 75px;
+  width: 2000px;
+  transition: all ease-in-out 0.5s;
+  padding: 0 15px;
+  z-index: 9997;
+}
+
