@@ -50,10 +50,10 @@ O projeto Vortex foi criado para auxiliar e acompanhar seus usuários no dia a d
  | [<img src="https://github.com/B4N64.png" width=115><br><sub>Samuel Alves</sub>](https://github.com/B4N64) |  
 | :---: | 
 
-| [<img src="./static/img/perfil3.jpeg" width=115><br><sub>Thiago Tomé</sub>](https://github.com/NerdAleatorio) |  
+| [<img src="https://github.com/Thiagosouza2005.png" width=115><br><sub>Thiago Tomé</sub>](https://github.com/Thiagosouza2005) |  
 | :---: | 
 
-| [<img src="./static/img/perfil3.jpeg" width=115><br><sub>Yuri Gabriel</sub>](https://github.com/NerdAleatorio) |  
+| [<img src="https://github.com/ygbriel.png" width=115><br><sub>Yuri Gabriel</sub>](https://github.com/ygbriel) |  
 | :---: | 
 ---
 
