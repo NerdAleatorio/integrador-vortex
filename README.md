@@ -44,33 +44,16 @@ O projeto Vortex foi criado para auxiliar e acompanhar seus usuários no dia a d
 
 ## 👨🏻‍🎓 Desenvolvedores
 
-| [<img src="./static/img/perfil3.jpeg" width=115><br><sub>Ian Vinícius Vasconcelos</sub>](https://github.com/NerdAleatorio) |  
+| [<img src="https://github.com/NerdAleatorio.png" width=115><br><sub>Ian Vinícius Vasconcelos</sub>](https://github.com/NerdAleatorio) |  
 | :---: | 
 
- | [<img src="./static/img/perfil3.jpeg" width=115><br><sub>Samuel Alves</sub>](https://github.com/NerdAleatorio) |  
+ | [<img src="https://github.com/B4N64.png" width=115><br><sub>Samuel Alves</sub>](https://github.com/B4N64) |  
 | :---: | 
 
-| [<img src="./static/img/perfil3.jpeg" width=115><br><sub>Thiago Tomé</sub>](https://github.com/NerdAleatorio) |  
+| [<img src="https://github.com/Thiagosouza2005.png" width=115><br><sub>Thiago Tomé</sub>](https://github.com/Thiagosouza2005) |  
 | :---: | 
 
-| [<img src="./static/img/perfil3.jpeg" width=115><br><sub>Yuri Gabriel</sub>](https://github.com/NerdAleatorio) |  
+| [<img src="https://github.com/ygbriel.png" width=115><br><sub>Yuri Gabriel</sub>](https://github.com/ygbriel) |  
 | :---: | 
 ---
 
-# Explicações
-## Painel Lateral
-![modulos](./static/img/modulos.png)
-
-- Main
-> Funções principais do código, como cadastro, login, atividades etc.
->
-- Atividade
-> Classe Atividade com seus atributos e métodos
->
-- Usuário
-> Classe Usuário com seus atributos e métodos
->
-- Conexao
-> Todas as funções do banco de dados
->
----
