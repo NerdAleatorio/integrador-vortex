@@ -29,7 +29,7 @@ html, body{
 }
 
 #header .profile .info-cabecalho{
-  margin-left: 1050px;
+  margin-left: 945px;
 }
 
 #header-mobile{
@@ -87,6 +87,22 @@ html, body{
   color: #00f7ff;
 }
 
+i.menu-mobile{
+    position: fixed;
+    color: #fff;
+    background-color: #000000;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    width: 45px;
+    height: 45px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
 #logo{
   margin-left: 100px;
 }
@@ -106,18 +122,31 @@ section#inicio{
 }
 
 #teste{
-  margin-left: 500px;
+  margin-left: 100px;
 }
 
 .info-cabecalho a{
-  margin-left: 50px;
+  margin-right: 50px;
   color: #fff;
 }
 
 .info-cabecalho{
-  position: fixed;
   margin-top: -50px;
-  margin-left: 1000px;
+  
+}
+
+#contato{
+  font-size: 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  
+  background-color: #149DDD;
+  color: #fff;
+  cursor: pointer;
+  
+  height: 50px;
+  width: 200px;
 }
 
 .info-cabecalho a:hover, .info-cabecalho .active, .info-cabecalho .active:focus, .info-cabecalho li:hover > a {
@@ -125,31 +154,50 @@ section#inicio{
   color: #149DDD;
 }
 
+*::-webkit-scrollbar{
+  width: 10px
+}
+
+*::-webkit-scrollbar-track{
+  width: 12px;
+  box-shadow: inset 0 0 .4rem #090808;
+  background-color: #fff;
+}
+
+*::-webkit-scrollbar-thumb{
+    background-color: #090808;
+}
 
 #cadastre-se{
+  height: 50px;
+  width: 200px;
+  font-size: 20px;
   font-weight: bold;
-  margin-top: 50px;
-  margin-left: -250px;
+  border-radius: 10px;
+
   text-decoration: none;
   background-color: #149DDD;
   color: #fff;
-  font-size: 20px;
-  border-radius: 10px;
-  height: 50px;
-  width: 200px;
+  cursor: pointer;
+
+  margin-top: 50px;
+  margin-left: -250px;
 }
 
 #informacoes{
+  height: 50px;
+  width: 250px;
   font-weight: bold;
-  margin-top: 35px;
-  margin-left: -250px;
+  font-size: 20px;
+  border-radius: 10px;
+  
   text-decoration: none;
   background-color: #149DDD;
   color: #fff;
-  font-size: 20px;
-  border-radius: 10px;
-  height: 50px;
-  width: 250px;
+  cursor: pointer;
+
+  margin-top: 35px;
+  margin-left: -250px;
 }
 
 #title{
@@ -161,14 +209,6 @@ section#inicio{
   font-size: 1.5rem;
   font-style: italic;
   font-family: 'Kanit', Arial;
-}
-
-#vortex{
-  margin-left: 450px;
-}
-
-#sobre{
-  font-size: 25px;
 }
 
 #carinha{
@@ -183,11 +223,16 @@ section#inicio{
 }
 
 @media (max-width: 1024px){
-  section#inicio{
-    margin-right: 100px;
+  section#inicio h2{
+    margin-top: 5rem;
+    font-size: 3.5rem;
+  }
+  span#subtitle{
+    margin-right: 0;
+    font-size: 1rem;
   }
   section#inicio img#carinha{
-    margin-right: 100px;
+    margin-right: 0;
     font-size: 1rem;
   }
   #inicio .profile img{
@@ -196,19 +241,108 @@ section#inicio{
     width: 120px;
     border-radius: 50%;
 }
+  i.menu-mobile{
+    margin: 0 0 0;
+    display: flex;
+  }
+  section#inicio{
+    margin-right: 0;
+}
+  #main{
+    margin-top: 0;
+    margin-right: 0;
+  }
   #header{
     top: -500px;
     left: -300px;
   }
   #header-mobile{
-    left: -10px;
+    left: -300px;
     z-index: 9997;
   }
   #logo-mobile{
-    margin-left: 100px;
+    margin-left: 0;
+  }
+  #informacoes{
+    margin-left: 0;
+  }
+  #cadastre-se{
+    margin-left: 0;
   }
 }
 
-#objetivo{
+#vortex{
+  color: #fff;
+  font-size: 35px;
   text-align: center;
+}
+
+#sobre{
+  background: #090808;
+  font-size: 20px;
+}
+
+#objetivo{
+  color: #fff;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+#icons-sobre{
+  width: 100%;
+  height: 100%;
+
+  color: #149DDD;
+
+  margin-top: 6rem;
+  margin-bottom: 7rem;
+  text-align: center;
+}
+
+#icon-sobre{
+  width: 100%;
+  height: 100%;
+}
+
+#plataforma{
+  background: #000000;
+  font-size: 25px;
+}
+
+#title-plataform{
+  color: #fff;
+  font-size: 35px;
+  text-align: center;
+}
+
+#porque-usar{
+  color: #fff;
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 20px;
+}
+
+#icons-plataforma{
+  width: 100%;
+  height: 100%;
+
+  color: #149DDD;
+
+  margin-top: 6rem;
+  margin-bottom: 7rem;
+  text-align: center;
+}
+
+#icon-plataforma{
+  width: 100%;
+  height: 100%;
+}
+
+#titulo-icon{
+  text-decoration: none;
+  text-style: none;
+}
+
+#legenda-icon{
+  color: #fff;
 }
