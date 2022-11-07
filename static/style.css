@@ -664,3 +664,36 @@ section#tecnologias #tec{
   margin-left: 10rem;
   justify-content: center;
 }
+
+#titulo{
+  font-size: 3rem;
+  font-family: 'Kanit', Arial;
+  color: #fff;
+  margin-top: 320px;
+  margin-left: 600px;
+}
+
+#subtitulo{
+  font-size: 1.5rem;
+  font-style: italic;
+  font-family: 'Kanit', Arial;
+  color: #fff;
+  margin-top: 380px;
+  margin-left: -500px;
+}
+
+
+.body-conta{
+  background: #090808;
+}
+
+.cabecalho{
+  margin-top: 10rem;
+  margin-left: 10rem;
+}
+
+.title-conta{
+  color: #fff;
+  font-size: 32px;
+  font-family: 'Kanit', Arial;
+}

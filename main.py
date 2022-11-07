@@ -28,6 +28,9 @@ def login():
 def planner():
           return render_template("planner.html")
 
+@app.route('/conta', methods = ["post", "get"])
+def conta():
+          return render_template("conta.html")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=81)
