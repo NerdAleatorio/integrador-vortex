@@ -21,8 +21,8 @@
               <a class="item-menu" href="#inicio">Início</a>
               <a class="item-menu" href="#sobre">Sobre</a>
               <a class="item-menu" href="#tecnologias">Tecnologias</a>
-              <a class="item-menu" href="#cadastro">Cadastro</a>
-              <a class="item-menu" href="#login">Login</a>
+              <a class="item-menu" href="/cadastro">Cadastro</a>
+              <a class="item-menu" href="/login">Login</a>
               <a class="item-menu" href="https://wipsites.com.br"><button id="contato">Entre em contato</button></a>
         </div>
       </section>
@@ -39,9 +39,9 @@
 
               <li class="nav-item"><a class="nav-link" href="#tecnologias"><i class="bi bi-award"></i>Tecnologias</a></li>
 
-              <li class="nav-item"><a class="nav-link" href="#cadastro"><i class="bi bi-file-earmark"></i>Cadastro</a></li>
+              <li class="nav-item"><a class="nav-link" href="/cadastro"><i class="bi bi-file-earmark"></i>Cadastro</a></li>
 
-              <li class="nav-item"><a class="nav-link" href="#login"><i class="bi bi-file-code"></i>Login</a></li>
+              <li class="nav-item"><a class="nav-link" href="/login"><i class="bi bi-file-code"></i>Login</a></li>
       </nav>
     </aside>
   </section>
@@ -49,10 +49,11 @@
     <main id="main">
         <section id="inicio" class="row m-0 p-0">
                   <div id="inicio-textos" class="col-md-5 d-flex justify-content-center align-items-center flex-column">
+                      <img id="logo-for-inicio" class="mt-3" src="/static/img/vortex.png" alt="fundo-mobile"/>
                       <h2 id="title" class="text-white text-shadow">Planner Vortex</h2>
                       <span id="subtitle" class="text-white text-shadow">O planejamento está a um clique de distância!</span>
-                      <a href="https://wipsites.com.br"><button id="cadastre-se">Cadastre-se</button></a>
-                      <a href="https://wipsites.com.br"><button id="informacoes">Mais Informações</button></a>
+                      <a href="https://projeto-integrador-vortex.um-nerdnerd.repl.co/templates/cadastro.html"><button id="cadastre-se">Cadastre-se</button></a>
+                      <a href="https://projeto-integrador-vortex.um-nerdnerd.repl.co/templates/login.html"><button id="informacoes">Mais Informações</button></a>
                   </div>
   
                   <div id="imagem-modelo" class="col-md-5 d-flex justify-content-center align-items-center flex-column">
@@ -112,6 +113,35 @@
                       </i>
                     </div>
         </section>
-      
+
+        <section id="tecnologias" class="row m-0 p-0">
+          <div class="row w-100">
+            <div class="col-md-12">
+              <h2 id="title-tecnologias" class="pt-3 mt-5 mb-5"><strong><span id="cor_azul">Tecnologias</span> implementadas</h2>
+              <p id="tec" class="container">Ambitious about your next adventure but sick of saving money? End up sneaking into those savings because well.. 
+                You’re bored? Lost motivation? You don’t feel the funds are growing fast enough? Saving just sucks? Trasave has 
+                introduced an epic new way to reward you for your savings for travel</p>
+            </div>
+          </div>
+          <div id="imgs-tecnologias" class="row mt-6">
+            
+            <div id="img-tecnologia" class="col">  
+              <img src="/static/img/logo-python.png"/>
+              <p id="legenda-img" class="container">Linguaguem de programação utilizada no back-end do sistema</p>
+            </div>
+  
+            <div id="img-tecnologia" class="col">        
+              <img src="/static/img/logo-flask.png"/>
+              <p id="legenda-img" class="container">Microframework que utiliza a linguagem Python para criar aplicativos Web</p>
+            </div>
+  
+            <div id="img-tecnologia" class="col">     
+              <img src="/static/img/logo-html.png"/>
+              <p id="legenda-img" class="container">Linguagens utilizadas no front-end da aplicação</p>
+            </div>
+          </div>
+        </section>
     </main>
+  
+  <script type="text/javascript" src="static/script.js"></script>
 </body>

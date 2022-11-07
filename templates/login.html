@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  
+  <link rel="stylesheet" href="{{ url_for( 'static', filename = 'style.css') }}"/>
+  <link rel="shortcut icon" href="/static/img/vortex.png" type="imagem/x-icon"/>
+  <title>Vortex</title>
+  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css"/>
+</head>
+
+<body id="body-login">
+      <main class="principal">
+        <header class="cabecalho">
+          <h1 class="title-page">Faça login</h1>
+        </header>
+        
+        <div class="row">
+            <div class="caixa">
+                    <form id="login-espaco" action="/planner" class="box" method="post">
+                            <input type="text" name="username" placeholder="Nome de usuário">
+                            <input type="password" name="senha" placeholder="Senha">
+                            <input type="submit" name="botao" value="Login"></input>
+                    </form>
+            </div>
+                    
+          <div class="segunda-caixa container col">
+                  <img id="logo-cadastro" src="static/img/vortex.png"/>
+                  <p id="title-login">Bem vindo de volta!</p>
+                  <p id="nao-possui">Não possui uma conta?</p>
+                  <a id="retornar" href="/cadastro">Realizar Cadastro</a>
+            </div>
+        </div>
+      </main>
+  </body>
+</html>

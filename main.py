@@ -14,5 +14,20 @@ app = Flask(__name__)
 def index():
           return render_template("index.html")
 
+
+@app.route('/cadastro', methods = ["post", "get"])
+def cadastro():
+          return render_template("cadastro.html")
+
+
+@app.route('/login', methods = ["post", "get"])
+def login():
+          return render_template("login.html")
+
+@app.route('/planner', methods = ["post", "get"])
+def planner():
+          return render_template("planner.html")
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=81)

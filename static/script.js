@@ -8,7 +8,6 @@ menuMobile.addEventListener('click', () => {
     body.classList.toggle("menu-nav-active");
 });
 
-
 const navItem = document.querySelectorAll('.nav-item')
 
 navItem.forEach(item => {
@@ -19,3 +18,12 @@ navItem.forEach(item => {
         }
     })
 })
+
+const altura = window.screen.height;
+const largura = window.screen.width;
+
+if (altura <= 789 && largura <= 900){
+  modelinho = document.getElementById('imagem-modelo').innerHTML
+  modelinho.classList.remove("img-fluid")
+}
+
