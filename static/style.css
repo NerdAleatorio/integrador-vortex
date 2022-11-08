@@ -559,7 +559,7 @@ section#tecnologias #tec{
 
 #logo-cadastro{
   margin-top: 6rem;
-  margin-left: 6rem;
+  margin-left: 7rem;
   justify-content: center;
 }
 
@@ -584,6 +584,15 @@ section#tecnologias #tec{
   text-decoration: none;
   margin-top: 1rem;
   margin-left: 6.5rem;
+}
+
+#retornar2{
+  font-size: 13px;
+  color: #149DDD;
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: 1rem;
+  margin-left: 10rem;
 }
 
 .caixa-cadastro{
@@ -650,13 +659,20 @@ section#tecnologias #tec{
   font-size: 15px;
   align-items: center;
   margin-top: 7rem;
-  margin-left: 4.5rem;
+  margin-left: 8rem;
 }
 
 #title-cadastro{
   color: #fff;
   font-size: 32px;
-  justify-content: relative;
+  justify-content: center;
+}
+
+#cadastro-title{
+  color: #fff;
+  font-size: 32px;
+  justify-content: center;
+  margin-left: -75px;
 }
 
 #logo-login{
@@ -664,24 +680,6 @@ section#tecnologias #tec{
   margin-left: 10rem;
   justify-content: center;
 }
-
-#titulo{
-  font-size: 3rem;
-  font-family: 'Kanit', Arial;
-  color: #fff;
-  margin-top: 320px;
-  margin-left: 600px;
-}
-
-#subtitulo{
-  font-size: 1.5rem;
-  font-style: italic;
-  font-family: 'Kanit', Arial;
-  color: #fff;
-  margin-top: 380px;
-  margin-left: -500px;
-}
-
 
 .body-conta{
   background: #090808;
@@ -694,6 +692,61 @@ section#tecnologias #tec{
 
 .title-conta{
   color: #fff;
-  font-size: 32px;
+  font-size: 45px;
   font-family: 'Kanit', Arial;
+
+  margin-left: 5rem;
+  margin-top: 3rem;
+}
+
+.cabecalho #userfoto{
+  color: #fff;
+  width: 10%;
+  height: 10%;
+  margin-top: 5rem;
+}
+
+.username{
+  color: #fff;
+  font-size: 35px;
+  font-family: 'Kanit', Arial;
+  margin-top: 9rem;
+}
+
+.info-1{
+  color: #fff;
+  font-size: 17px;
+  font-family: 'Kanit', Arial;
+  
+  margin-top: 1.5rem;
+  margin-left: 10rem;
+  margin-right: -15rem;
+  align-items: center;
+}
+
+.info-2{
+  color: #fff;
+  font-size: 170px;
+  font-family: 'Kanit', Arial;
+  
+  margin-top: 1.5rem;
+  margin-left: -30rem;
+  align-items: center;
+}
+
+#titulo{
+  font-size: 3rem;
+  font-family: 'Kanit', Arial;
+  color: #fff;
+  margin-top: 10rem;
+  margin-left: 600px;
+}
+
+#subtitulo{
+  font-size: 1.5rem;
+  font-style: italic;
+  font-family: 'Kanit', Arial;
+  color: #fff;
+  margin-top: 13rem;
+  margin-left: -500px;
 }

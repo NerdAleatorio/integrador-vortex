@@ -13,27 +13,41 @@
 </head>
 
 <body id="body-login">
-      <main class="principal">
-        <header class="cabecalho">
-          <h1 class="title-page">Faça login</h1>
-        </header>
-        
-        <div class="row">
-            <div class="caixa">
-                    <form id="login-espaco" action="/planner" class="box" method="post">
-                            <input type="text" name="username" placeholder="Nome de usuário">
-                            <input type="password" name="senha" placeholder="Senha">
-                            <input type="submit" name="botao" value="Login"></input>
-                    </form>
-            </div>
-                    
-          <div class="segunda-caixa container col">
-                  <img id="logo-cadastro" src="static/img/vortex.png"/>
-                  <p id="title-login">Bem vindo de volta!</p>
-                  <p id="nao-possui">Não possui uma conta?</p>
-                  <a id="retornar" href="/cadastro">Realizar Cadastro</a>
-            </div>
+  <i class="bi bi-list menu-mobile"></i>
+  <aside id="header">
+    <section class="profile">
+      <img id="logo" class="mt-4" src="/static/img/vortex.png" alt="fundo"/>
+      <div class="info-cabecalho">
+            <a class="item-menu" href="/">Início</a>
+            <a class="item-menu" href="/#sobre">Sobre</a>
+            <a class="item-menu" href="/cadastro">Cadastro</a>
+            <a class="item-menu" href="/login">Login</a>
+            <a class="item-menu" href="https://wipsites.com.br"><button id="contato">Entre em contato</button></a>
+      </div>
+    </section>
+  </aside>
+  
+  <main class="principal">
+    <header class="cabecalho">
+      <h1 class="title-page">Faça login</h1>
+    </header>
+    
+    <div class="row">
+        <div class="caixa">
+                <form id="login-espaco" action="/planner" class="box" method="post">
+                        <input type="text" name="username" placeholder="Nome de usuário">
+                        <input type="password" name="senha" placeholder="Senha">
+                        <input type="submit" name="botao" value="Login"></input>
+                </form>
         </div>
-      </main>
-  </body>
-</html>
+                
+      <div class="segunda-caixa container col">
+              <img id="logo-cadastro" src="static/img/vortex.png"/>
+              <p id="title-login">Bem vindo de volta!</p>
+              <p id="nao-possui">Não possui uma conta?</p>
+              <a id="retornar" href="/cadastro">Realizar Cadastro</a>
+        </div>
+    </div>
+  </main>
+</body>
+

@@ -32,5 +32,11 @@ def planner():
 def conta():
           return render_template("conta.html")
 
+
+
+@app.route('/tasklist', methods = ["post", "get"])
+def tasklist():
+          return render_template("tasklist.html")
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=81)
+    app.run(host='0.0.0.0', port=81, debug=True)

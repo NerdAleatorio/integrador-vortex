@@ -12,25 +12,37 @@
 </head>
 
 <body class="body-conta">
-     <aside id="header">
-        <section class="profile">
-          <img id="logo" class="mt-4" src="/static/img/vortex.png" alt="fundo"/>
-          <div class="info-cabecalho">
-                <a class="item-menu" href="#inicio">Início</a>
-                <a class="item-menu" href="#sobre">Minhas atividades</a>
-                <a class="item-menu" href="/conta">Conta</a>
-          </div>
-        </section>
-     </aside>
+       <aside id="header">
+          <section class="profile">
+            <h1 class="title-conta">Sua <strong><span id="cor_azul">conta</span></strong></h1>
+            <div class="info-cabecalho">
+                  <a class="item-menu" href="/planner">Início</a>
+                  <a class="item-menu" href="#atividades">Minhas atividades</a>
+                  <a class="item-menu" href="/conta">Conta</a>
+            </div>
+          </section>
+       </aside>
+  
+        <main class="principal-conta">
+          <header class="cabecalho">
+            <div class="row">
+              <img id="userfoto" src="/static/img/user-profile.png">
+              <p class="username col">USERNAME DO FULANINHO</p>
+            </div>
+          </header>
 
-
-      <main class="principal-conta">
-        <header class="cabecalho">
-          <h1 class="title-conta">Sua <strong><span id="cor_azul">conta</span></strong></h1>
-          <div class="row">
-            <i class="bi bi-person-circle"></i>
-            <p>Samuel Alves Gatão Freitas</p>
-          </div>
-        </header>
-      </main>
-</body>
+          <section class=" row">
+            <div class="info-1 col">
+              <h2 id="user-name">Nome completo:</h2>
+              <h2 id="user-desde">Membro desde:</h2>
+            </div>
+            
+            <div class="info-2 col">
+              <h2 id="user-email">Email:</h2>
+              <h2 id="user-senha">Senha:</h2>
+            </div>
+          </section>
+          
+        </main>
+  </body>
+</html>
