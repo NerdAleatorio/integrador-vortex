@@ -1168,3 +1168,51 @@ input:placeholder-shown {
 #main-recuperar{
   background: #000;
 }
+
+.caixa-recuperar{
+  display: flex;
+
+  width: 600px;
+  height: 600px;
+
+  color: #fff;
+  border-radius: 5px;
+
+  margin-left: 15rem;
+  margin-top: 15rem;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.caixa-recuperar::before, .caixa-recuperar::after{
+  content: '';
+  width: calc(100% + 30px);
+  height: calc(100% + 30px);
+
+  border-radius: 8px;
+  background-size: 300%;
+  background: linear-gradient(45deg, #007bff, #00ffe1, #03141C, #00ffe1);
+
+  z-index: -1;
+  position: absolute;
+
+  animation: animate 10s linear alternate infinite;
+}
+
+
+
+
+/*CSS ATIVIDADE*/
+.body-atividades{
+  background:#000;
+  margin-top:110px;
+  color:#fff;
+}
+
+
+#logo-recuperar{
+  color: #fff;
+}
+
+.caixa-

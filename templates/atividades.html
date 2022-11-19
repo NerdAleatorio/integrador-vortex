@@ -12,7 +12,7 @@
 </head>
 
 
-<body>
+<body class='body-atividades'>
   <aside id="header">
       <section class="profile">
         <a href="/"><img id="logo" class="mt-4" src="/static/img/vortex.png" alt="fundo"/></a>
@@ -20,10 +20,61 @@
               <a class="item-menu" href="/planner">Inicio</a>
               <a class="item-menu" href="/tasklist">Task List</a>
               <a class="item-menu" href="/calendario">Calendário</a>
-              <a class="item-menu" href="/conta">Conta</a>
         </div>
       </section>
     </aside>
+
+    <main class="principal-atividades">
+      <div class="container-sm">
+
+      <h1>Adicionar atividades</h1>
+
+          
+      <form action="cadastrar" method="post">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" name = "nome">
+        </div>
+
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição</label>
+            <input type="text" class="form-control" id="descricao" name = "descricao">
+        </div>
+        
+        <div class="mb-3">
+          <label for="dataAtividade" class="form-label">Data</label>
+          <input type="date" class="form-control" id="dataAtividade" name = "dataN">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Adicionar</button>
+      </form>
+        
+        <hr>          
+        <h1>Atividades adicionadas</h1>
+        <table class="table">
+          <tr>
+            
+            <th scope="col">Nome</th>
+            <th scope="col">Data</th>
+            <th scope="col">Descrição</th>
+            
+          </tr>
+          
+          {% for item in result %}   
+          <tr>
+      
+            <td>{{item["CPF"]}}</td>
+            <td>{{item["Nome"]}}</td>
+            <td>{{item["Data de nascimento"]}}</td>
+            <td><a class="btn btn-danger" href='/deletar/{{item["CPF"]}}'>Deletar</a></td>
+            <td><a class="btn btn-primary"  href='/update/{{item["CPF"]}}' >Atualizar</a></td>
+          </tr>
+          
+          {% endfor %}
+          
+        </table>
+        </div>
+    </main>
 
 
   

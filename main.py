@@ -8,7 +8,6 @@ from flask.globals import request
 #Código principal
 app = Flask(__name__)
  
-
 #Renderizando menu inicial
 @app.route('/')
 def index():
@@ -28,11 +27,6 @@ def login():
 @app.route('/planner', methods = ["post", "get"])
 def planner():
         return render_template("planner.html")
-
-#Renderizando tela de conta do usuário
-@app.route('/conta', methods = ["post", "get"])
-def conta():
-        return render_template("conta.html")
 
 #Renderizando tela de calendário
 @app.route('/calendario', methods = ['post', 'get'])
@@ -83,18 +77,22 @@ def receber_cadastro():
   
 #Função de validação de login
 @app.route('/logar', methods = ["post", "get"])
+
 def realizar_login():
   try:
       conexao = iniciar_conexao()
-  
+      global nome_login
       nome_login = request.form['username']
       senha_login = request.form['senha']
-    
+
+      global nome_user
+      nome_user = nome_login
+
       str(nome_login)
       str(senha_login)
 
       print(nome_login, senha_login)
-    
+
       SQL_buscar_dados = "SELECT * FROM usuarios"
       aux = buscando_dados(conexao, SQL_buscar_dados)
       print(aux)
@@ -126,8 +124,7 @@ def realizar_login():
 @app.route('/recuperar', methods = ["post", "get"])
 def recuperar_senha():
   return render_template("recuperar.html")
-
-
+  
 #Criar tabela usuário
 def tabelaUsuarios():
     conexao = iniciar_conexao()
@@ -142,7 +139,19 @@ def tabelaUsuarios():
     """
     criar_tabela(conexao, tabela)
 
+def tabelaAtividades():
+    conexao = iniciar_conexao()
 
+    tabelaAtv = """
+      CREATE TABLE IF NOT EXISTS usuarios(
+      idAtividade integer PRIMARY KEY AUTOINCREMENT,
+      nomeAtividade text NOT NULL,
+      dataAtividade text NOT NULL,
+      descricaoAtividade text NOT NULL
+      );
+    """
+
+    criar_tabela(conexao, tabelaAtv)
   
 #Chamando funções
 tabelaUsuarios()
