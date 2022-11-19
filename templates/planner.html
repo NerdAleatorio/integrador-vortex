@@ -11,27 +11,128 @@
   <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css"/>
 </head>
 
-<body>
+<body class="body-planner">
+  <i class="bi bi-list menu-mobile"></i>
    <aside id="header">
       <section class="profile">
-        <a href="/index"><img id="logo" class="mt-4" src="/static/img/vortex.png" alt="fundo"/></a>
+        <a href="/"><img id="logo" class="mt-4" src="/static/img/vortex.png" alt="fundo"/></a>
         <div class="info-cabecalho">
-              <a class="item-menu" href="#user-atividades">Minhas atividades</a>
+              <a class="item-menu" href="/atividades">Minhas atividades</a>
               <a class="item-menu" href="/tasklist">Task List</a>
-              <a class="item-menu" href="#calendario">Calendário</a>
+              <a class="item-menu" href="/calendario">Calendário</a>
               <a class="item-menu" href="/conta">Conta</a>
               <a class="item-menu" href="/">Sair</a>
+
         </div>
       </section>
     </aside>
 
-    <main id="main">
-      <section id="inicio" class="row m-0 p-0">
-          <h2 id="titulo">Olá, o que temos para hoje?</h2>
-          <span id="subtitulo" class="text-white text-shadow">Bem Vindo @user! Alguma novidade?</span>
+    <aside id="header-mobile">
+        <section class="profile-mobile">
+        <img id="logo-mobile" class="mt-3" src="/static/img/vortex.png" alt="fundo-mobile"/>
+        <nav id="navbar" class="nav-menu">
+          <ul class="nav flex-column">
+              <li class="nav-item"><a class="nav-link active" aria-current="page" href="#"><i class="bi bi-house"></i>Início</a></li>
+
+              <li class="nav-item"><a class="nav-link" href="#sobre"><i class="bi bi-person"></i>Sobre</a></li>
+            
+              <li class="nav-item"><a class="nav-link" href="/cadastro"><i class="bi bi-file-earmark"></i>Cadastro</a></li>
+
+              <li class="nav-item"><a class="nav-link" href="/login"><i class="bi bi-file-code"></i>Login</a></li>
+      </nav>
+    </aside>
+  
+    <main id="main-planner">
+      <section class="inicio-planner" class="row m-0 p-0">
+          <div id="inicio-planner-extos" class="">
+              <h2 id="title-planner" class="text-white text-shadow">Olá, o que temos para hoje?</h2>
+              <span id="subtitle-planner" class="text-white text-shadow">Bem vindo {{nome_user}}! Alguma novidade?</span>
+                <div class="botoes-planner">
+                  <li class="grid-botoes">
+                    
+                    <a href="/atividades">    
+                      <button class="botao-atv" type="button"><div>MINHAS ATIVIDADES</div></button>
+                    </a>
+                    
+                    <a href="/tasklist">    
+                       <button class="botao-task" type="button"><div>TASK LIST</div></button>
+                    </a>
+                    
+                    <a href="/calendario">    
+                      <button class="botao-calendar" type="button"><div>CALENDÁRIO</div></button>
+                    </a>
+                    
+                  </li>
+                </div>
+          </div>
       </section>
-        
+
+      <section class="pagina-semanal ow m-0 p-0">
+        <h2 id="cabecalho-semanal">Página da <strong><span id="cor_azul">Semana</span></strong></h2>
+
+        <div class="caixa-relogio">
+          <div class="relogio">
+            <h2 class="js-data">[Data]</h2>
+          </div>            
+        </div>
+
+        <div class="row">
+          <div class="dia col">
+            <div class="dia-body">
+              <h5 id="segunda">Segunda-feira</h5>
+              <p id="segunda-tasks"></p>
+            </div>
+          </div>
+          
+          <div class="dia col">
+            <div class="dia-body">
+              <h5 id="terca">Terça-feira</h5>
+              <p id="terca-tasks"></p>
+            </div>
+          </div>
+          
+          <div class="dia col">
+            <div class="dia-body">
+              <h5 id="quarta">Quarta-feira</h5>
+              <p id="quarta-tasks"></p>
+            </div>
+            
+          </div>
+          <div class="dia col">
+            <div class="dia-body">
+              <h5 id="quinta">Quinta-feira</h5>
+              <p id="quinta-tasks"></p>
+            </div>
+          </div>
+          <div class="dia col">
+            <div class="dia-body">
+              <h5 id="sexta">Sexta-feira</h5>
+              <p id="sexta-tasks"></p>
+            </div>
+          </div>
+      </div>
+
+      </section>
+      
     </main>
   
-</body>
+  <script>
+        semana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+        meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+        function configurarData() {
+            let data = new Date();
+            let mes = data.getMonth();
+            let ano = data.getFullYear();
+            let dia = data.getDay();
+            let diaNum = data.getDate();
+            
+            let areaData = document.querySelector(".js-data");
+            
+            let completo = semana[dia] + ", " + diaNum + "" + " de " + meses[mes] + " " + "de " + ano
+            
+            areaData.textContent = completo
+          };
+    configurarData();
+  </script>
+  </body>
 </html>

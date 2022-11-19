@@ -33,13 +33,15 @@
         </header>
         
         <div class="row">
-            <div class="caixa-cadastro">
-                    <form id="login-espaco" class="box" action="/planner" method="post">
-                            <input type="text" name="name" placeholder="Nome completo"/>
-                            <input type="text" name="username" placeholder="Nome de usuário">
-                            <input type="password" name="senha" placeholder="Senha">
-                            <input type="submit" name="botão" value="Cadastrar">
-            </div>
+          <div class="caixa-cadastro">
+                  <form id="login-espaco" class="box" action="/cadastrar" method="post">
+                          <input type="text" id="nome" name="nome" placeholder="Nome de usuário"/>
+                          <input type="text" id="gmail" name="gmail" placeholder="Email">
+                          <input type="text" id="senha" name="senha" placeholder="Senha">
+                          <input type="submit" name="botão" value="Cadastrar">
+                  </form>
+          </div>
+          
           <div class="caixa-logo container col">
                   <img id="logo-login" src="static/img/vortex.png"/>
                   <h1 id="title-cadastro">Você está a um passo de</h1>

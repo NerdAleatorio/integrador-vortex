@@ -1,5 +1,5 @@
-const menuMobile = document.querySelector('.menu-mobile')
-const body = document.querySelector('body')
+const menuMobile = document.querySelector('.menu-mobile');
+const body = document.querySelector('body');
 
 menuMobile.addEventListener('click', () => {
     menuMobile.classList.contains("bi-list")
@@ -17,4 +17,5 @@ navItem.forEach(item => {
             menuMobile.classList.replace("bi-x", "bi-list");
         }
     })
-})
+});
+  

@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,200&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Kings&display=swap');
 
 
 html, body{
@@ -426,7 +425,8 @@ section#tecnologias #tec{
 #body-login{
   display: flex;
   min-height: 100vh;
-  
+
+  font-family: 'Kanit', Arial;
   background: #000000;
 
   box-sizing: border-box;
@@ -495,7 +495,7 @@ section#tecnologias #tec{
   background: #03141C;
 
   border-radius: 4px;
-  transform: ttranslate(-50%, -50%);
+  transform: translate(-50%, -50%);
   
 }
 
@@ -508,7 +508,7 @@ section#tecnologias #tec{
   text-transform: uppercase;
 }
 
-.box input[type = "text"], .box input[type = "password"]{
+.box input[type = "text"], .box input[type = "password"], .box input[type = "email"]{
   
   display: block;
   font-family: 'Kanit', Arial;
@@ -518,7 +518,7 @@ section#tecnologias #tec{
   padding: 14px, 10px;
   
   
-  color: #fff;
+  color: #787878;
   outline: none;
   background: none;
   text-align: center;
@@ -529,10 +529,13 @@ section#tecnologias #tec{
   transition: 0.25s;
 }
 
-.box input[type = "text"]:focus, .box input[type = "password"]:focus{
+
+.box input[type = "email"]:focus, .box input[type = "text"]:focus, .box input[type = "password"]:focus{
   width: 200px;
   border-color: #149DDD;
 }
+
+
 
 .box input[type = "submit"]{
   cursor: pointer;
@@ -583,7 +586,7 @@ section#tecnologias #tec{
   cursor: pointer;
   text-decoration: none;
   margin-top: 1rem;
-  margin-left: 6.5rem;
+  margin-left: 0.5rem;
 }
 
 #retornar2{
@@ -592,7 +595,15 @@ section#tecnologias #tec{
   cursor: pointer;
   text-decoration: none;
   margin-top: 1rem;
-  margin-left: 10rem;
+  margin-left: 1rem;
+}
+
+#recuperar{
+  font-size: 13px;
+  color: #149DDD;
+  cursor: pointer;
+  text-decoration: none;
+  margin-left: 5rem;
 }
 
 .caixa-cadastro{
@@ -644,8 +655,8 @@ section#tecnologias #tec{
   height: 100%;
   padding: 200px;
   
-  top: 0;
-  left: 0;
+  margin-top: 600px;
+  margin-left: 600px;;
   right: 0;
   
   background: #03141C;
@@ -682,6 +693,7 @@ section#tecnologias #tec{
 }
 
 .body-conta{
+  font-family: 'Kanit', Arial;
   background: #090808;
 }
 
@@ -734,19 +746,425 @@ section#tecnologias #tec{
   align-items: center;
 }
 
-#titulo{
-  font-size: 3rem;
+/* CSS PLANNER */
+.body-planner{
   font-family: 'Kanit', Arial;
-  color: #fff;
-  margin-top: 10rem;
-  margin-left: 600px;
+  background: #000000;
 }
 
-#subtitulo{
-  font-size: 1.5rem;
-  font-style: italic;
+.inicio-planner{
+  margin-top: 150px;
+  background: #000000;
+}
+
+#title-planner{
+  font-size: 3rem;
   font-family: 'Kanit', Arial;
+  text-align: center;
+}
+
+#subtitle-planner{
+  display: block;
+  font-style: italic;
+  font-size: 1.5rem;
+  font-family: 'Kanit', Arial;
+  text-align: center;
+}
+
+#user-actv{
+  height: 50px;
+  width: 200px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+
+  text-decoration: none;
+  background-color: #149DDD;
   color: #fff;
-  margin-top: 13rem;
-  margin-left: -500px;
+  cursor: pointer;
+
+  z-index: 10;
+  margin-top: 50px;
+  margin-left: 250px;
+}
+
+#user-calendar{
+  height: 50px;
+  width: 250px;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 10px;
+  
+  text-decoration: none;
+  background-color: #149DDD;
+  color: #fff;
+  cursor: pointer;
+  
+  margin-top: 35px;
+  margin-left: 250px;
+}
+
+.botoes-planner{
+  margin-top: 6rem;
+  margin-bottom: 10rem;
+}
+
+.botao-atv{
+  width: 500px;
+  height: 500px;
+  
+  appearance: auto;
+  background-image: url("/static/img/vortex-atividade.png");
+  border: none;
+
+  cursor: pointer;
+  
+  text-ident: 0px;
+  text-shadow: none;
+  text-transform: none;
+
+  line-height: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+
+  align-items: flex-start;
+}
+ .botao-task{
+  width: 500px;
+  height: 500px;
+  
+  appearance: auto;
+  background-image: url("/static/img/vortex-task-list.png");
+  border: none;
+  
+  cursor: pointer;
+  
+  text-ident: 0px;
+  text-shadow: none;
+  text-transform: none;
+
+  line-height: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+
+  align-items: flex-start;
+}
+
+.botao-calendar{
+  width: 500px;
+  height: 500px;
+  
+  appearance: auto;
+  background-image: url("/static/img/vortex-calendario.png");
+  border: none;
+
+  cursor: pointer;
+  
+  text-ident: 0px;
+  text-shadow: none;
+  text-transform: none;
+
+  line-height: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+
+  align-items: flex-start;
+}
+
+.botao-atv:hover{
+  filter: brightness(0.7);
+}
+
+.botao-task:hover{
+  filter: brightness(0.7);
+}
+
+.botao-calendar:hover{
+  filter: brightness(0.7);
+}
+
+.botao-atv:hover div{
+  transform: scale(1.7,1.7);
+  transition: 0.45s;
+}
+
+.botao-task:hover div{
+  transform: scale(1.7,1.7);
+  transition: 0.45s;
+}
+
+.botao-calendar:hover div{
+  transform: scale(1.7,1.7);
+  transition: 0.45s;
+}
+
+.botao-calendar div{
+  margin-top: 11rem;
+  color: #fff;
+  font-size: 25px;
+  font-family: 'Kanit', Arial;
+}
+
+.botao-task div{
+  margin-top: 11rem;
+  
+  color: #fff;
+  font-size: 25px;
+  font-family: 'Kanit', Arial;
+}
+
+.botao-atv div{
+  margin-top: 11rem;
+  
+  color: #fff;
+  font-size: 25px;
+  font-family: 'Kanit', Arial;
+}
+
+.botao-atv:focus{
+  outline: 0px auto -webkit-focus-ring-color;
+  outline-offset: 0px;
+}
+
+.botao-task:focus{
+  outline: 0px auto -webkit-focus-ring-color;
+  outline-offset: 0px;
+}
+
+.botao-calendar:focus{
+  outline: 0px auto -webkit-focus-ring-color;
+  outline-offset: 0px;
+}
+
+.grid-botoes {
+  display: block;
+  text-align: center;
+}
+
+/* CSS PÁGINA DA SEMANAL */
+.pagina-semanal{
+  display: block;
+  font-family: 'Kanit', Arial;
+  background: #090808;
+}
+
+#cabecalho-semanal{
+  color: #fff;
+  font-size: 3rem;
+  font-family: 'Kanit', Arial;
+
+  text-align: center;
+}
+
+@media(max-width: 1024px){ 
+  .grid-botoes {
+    display: inline;
+  }
+}
+
+.relogio{
+  color: #FFF;
+  font-family: 'Kanit', Arial;
+  margin-left: 5rem;
+}
+
+.dia{
+  width: 30%;
+  height: 250px;
+
+  color: #fff;
+  font-family: 'Kanit', Arial;
+  background: #149DDD;
+
+  margin-bottom: 15rem;
+  
+  border-radius: 12px;
+  border: 0.5px solid white;
+}
+
+.dia h5{
+  margin-top: 0.7rem;
+  margin-left: 8.2rem;
+}
+
+/* CSS TASK LIST */
+#body-task{
+  font-family: 'Kanit', Arial;
+  background-color: #000;
+}
+
+.table{
+  color: #fff;
+  margin-top: -130px;
+}
+
+#entradas{
+  background-color: #000;
+  border: 0;
+}
+
+#concluida{
+  color-text: #000;
+}
+
+#back{
+  background: #00ff4c;
+  border: 1px solid #ffffff;
+  border-radius: 3vh;
+  color-text: #fff;
+}
+
+#text-atv {
+  background: #000;
+  border: 1px solid #fff;
+  color-text: #fff;
+}
+input::placeholder{
+  color: #fff;
+}
+
+input{
+  color: #fff;
+}
+
+input:not(:placeholder-shown) {
+  border: 1px solid #fff;
+}
+
+input:placeholder-shown {
+  border: 1px solid #000;
+}
+
+#data{
+  background-color: #000;
+  border: 1px solid #fff;
+}
+
+
+#title-task{
+  color: #fff;
+  margin-top: -60px;
+  margin-left: 500px;
+  position: absolute;
+}
+
+.tabela-task{
+  width: 500px;
+  margin-left: 500px;
+  margin-top: 300px;
+}
+
+.tabela-task{
+  margin-top: 9rem;
+  color: #fff;
+ }
+
+
+.tabela-task td{
+  color: #fff;
+}
+
+#task-list{
+  margin-top: 12rem;
+}
+
+#label{
+  color: #fff;
+}
+
+/* CSS CALENDÁRIO */
+#header{
+  font-family: 'Kanit', Arial;
+}
+.main-calendario{
+  background: #000000;
+  font-family: 'Kanit', Arial;
+}
+
+.cabecalho-calendar{
+  color: #fff;
+  font-size: 25px;
+  font-family: 'Kanit', Arial;
+
+  margin-top: 12rem;
+}
+
+.previous, next, mes{
+  margin-left: 50rem;
+}
+
+.table{
+  color: #fff;
+  margin-top: 5rem;
+}
+
+.table thead{
+  color: #000000;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.table td{
+  height: 71px;
+  width: 71.4px;
+
+  background: #ffffff;
+  border: 1px solid #000000;
+  
+  text-align: center;  
+}
+
+.table tbody td{
+   color: #000000;
+   cursor: pointer;
+}
+
+.table tbody td:hover{
+  background: #00fbff;
+}
+
+.table .dia-atual{
+  color: #fff;
+  background: #00fbff;
+}
+
+.table .mes-anterior, .table .proximo-mes{
+  color: #ababab;
+  background: #e3e3e3;
+}
+
+.table .mes-anterior:hover, .table .proximo-mes:hover{
+  background: #858585;
+}
+
+.ano{
+  color: #fff;
+  font-size: 40px;
+  font-family: 'Kanit', Arial;
+
+  margin-left: 55rem;
+}
+
+.mes{
+  color: #fff;
+  font-size: 35px;
+  font-family: 'Kanit', Arial;
+}
+
+#recuperacao{
+  font-size: 13px;
+  color: #149DDD;
+  cursor: pointer;
+  text-decoration: none;
+  margin-left: 5rem;
+}
+
+#messageError{
+  margin-top: 15px;
+  color: #f50000;
+  font-size: 13px;
+}
+
+#main-recuperar{
+  background: #000;
 }

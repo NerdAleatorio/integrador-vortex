@@ -11,6 +11,8 @@ replit = "^3.2.4"
 Flask = "^2.2.0"
 urllib3 = "^1.26.12"
 pandas = "^1.5.1"
+tinydb = "^4.7.0"
+query = "^0.1.4"
 
 [tool.poetry.dev-dependencies]
 debugpy = "^1.6.2"
