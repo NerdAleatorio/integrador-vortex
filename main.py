@@ -1,14 +1,21 @@
- #BIBLIOTECAS
-from conexao import *
+#BIBLIOTECAS
+import random
+import smtplib
+import email.message
 
 #SERVIDOR FLASK
 from flask import Flask, render_template, redirect 
 from flask.globals import request
 
+#MÓDULOS
+from conexao import *
+
+global idUsuario
+
 #Código principal
 app = Flask(__name__)
- 
-#Renderizando menu inicial
+
+#Renderizando menu inicial e outros
 @app.route('/')
 def index():
       return render_template("index.html")
@@ -28,12 +35,6 @@ def login():
 def planner():
         return render_template("planner.html")
 
-#Renderizando tela de calendário
-@app.route('/calendario', methods = ['post', 'get'])
-def calendario():
-        return render_template("calendario.html")
-
-
 #Renderizando tela Task List
 @app.route('/tasklist', methods = ["post", "get"])
 def tasklist():
@@ -43,89 +44,317 @@ def tasklist():
 #Renderizando tela de atividades
 @app.route('/atividades', methods = ["post", "get"])
 def atividades():
-        return render_template("atividades.html")
+        listarAtividades()
+        return render_template("atividades.html", mostrar = dados)
 
+#Renderização de recuperação de senha
+@app.route('/recuperar', methods = ["post", "get"])
+def recuperacao():
+      return render_template("recuperar.html")
 
-#Função de cadastro de usuários
-@app.route('/cadastrar', methods = ["post", "get"])
-def receber_cadastro():
-  try:
-      conexao = iniciar_conexao()
-      
-      nome = request.form['nome']
-      email = request.form['gmail']
-      senha = request.form['senha']
+#VRenderizar codigo de acesso
+@app.route('/codigoAcesso', methods = ['post', 'get'])
+def codigoAcesso():
+  return render_template("codigoAcesso.html")
 
-      username = nome
-      emailuser = email
-      senhauser = senha
+#Cadastro e login de Usuário
+
+#Redefinir senha
+@app.route('/password', methods = ['post', 'get'])
+def redefinir_password():
+  return render_template("redefinirSenha.html")
+
+#atualizar atividade
+@app.route('/atualizarAtv', methods = ['post', 'get'])
+def atualizar_Atividade():
+  return render_template("atualizarAtv.html")
   
-      str(username)
-      str(emailuser)
-      str(senhauser)
+#Classe usuário
+class Usuario:
+      def __init__(self, nomeUsuario, emailUsuario, senhaUsuario, buscar_id):
+            self.nomeUsuario = nomeUsuario
+            self.emailUsuario = emailUsuario
+            self.senhaUsuario = senhaUsuario
+            self.buscar_id = buscar_id
+
+      def acessarInformacoes(self):
+            informacoesUsuario = [self.nomeUsuario, self.emailUsuario, self.senhaUsuario]
+            return informacoesUsuario
+        
+class Atividade:
+      def __init__(self, idAtividade, nomeAtividade, dataAtividade, descricaoAtividade):
+          self.idAtividade = idAtividade
+          self.nomeAtividade = nomeAtividade
+          self.dataAtividade = dataAtividade
+          self.descricaoAtividade = descricaoAtividade
+
+      def acessarInformacoesAtividade(self):
+          informacoesAtividades = [self.idAtividade, self.nomeAtividade]
+          return informacoesAtividades
+        
+def receber_cadastro():
+    try:
+        conexao = iniciar_conexao()
+        
+        nome = request.form['nome']
+        email = request.form['gmail']
+        senha = request.form['senha']
+  
+        str(nome)
+        str(email)
+        str(senha)
+
+        SQL_buscar_dados = "SELECT * FROM usuarios"
+        aux = buscando_dados(conexao, SQL_buscar_dados)
+
       
-      print(nome, email, senha)
+        for index in range(len(aux)):
+          for busca in range(4):
+            lista = aux[index]
+
+            if email == lista[busca]:
+              var = "Cadastro já existente"
+              return render_template("cadastro.html", resultado = var)
+
       
-      SQL_inserir_usuario = "INSERT INTO usuarios(nome, email, senha) VALUES ('"+(username)+"', '"+(emailuser)+"', '"+(senhauser)+"')"
-      inserir_usuario(conexao, SQL_inserir_usuario)
+        print(nome, email, senha)
+        
+        SQL_inserir_usuario = "INSERT INTO usuarios(nome, email, senha) VALUES ('"+(nome)+"', '"+(email)+"', '"+(senha)+"')"
+        inserir_usuario(conexao, SQL_inserir_usuario)
+
+    
+        return redirect('/')
       
-      return redirect('/')
-  except:
+    except:
       print('\033[1;49;31mErro ao realizar login de usuário.\033[m')
 
-  return render_template("cadastro.html")
+    return render_template("cadastro.html")
+        
+def realizar_login():
+      try:
+        user = Usuario(0,0,0,0)
+        
+        conexao = iniciar_conexao()
+        
+        global nome_login
+        nome_login = request.form['username']
+        senha_login = request.form['senha']
+        
+        str(nome_login)
+        str(senha_login)
+  
+        SQL_buscar_dados = "SELECT * FROM usuarios"
+        aux = buscando_dados(conexao, SQL_buscar_dados)
+      
+        
+        for index in range(len(aux)):
+          for busca in range(4):
+            lista = aux[index]
+            
+            if nome_login == lista[busca]:
+              confirmNome = True
+  
+        for index in range(len(aux)):
+          for busca in range(4):
+            lista = aux[index]
+            if senha_login == lista[busca]:
+              confirmPass = True
+    
+              
+        if confirmPass == True and confirmNome == True: 
+          return render_template('planner.html', nome_user = nome_login)
+
+      except:
+          print('\033[1;49;31mErro ao realizar login de usuário.\033[m')
+
+      return render_template("login.html", erro = "Não foi possível validar os dados. Tente novamente.")
+        
+        
+def validar_email():
+      global confirmEmail 
+      confirmEmail = False
+
+      conexao = iniciar_conexao()
+      
+      emailRecuperar = request.form['email-recuperar']
+      SQL_buscar_dados = "SELECT * FROM usuarios"
+      active = buscando_dados(conexao, SQL_buscar_dados) 
+
+      
+      for index in range(len(active)):
+          for busca in range(4):
+            lista = active[index]
+    
+            if emailRecuperar == lista[busca]:
+              confirmEmail = True
+              
+      if confirmEmail == True:
+          codigoAcesso = random.randint(200,1000)
+        
+          corpo_email = f"""
+          <body style="font-size: 16px; border: 2px solid #000; border-radius: 20px; color: #000;">  
+            <p style="margin-left: 1rem;"><b>Olá, usuário Vortex.</b><br>Você solicitou a recuperação de sua senha de acesso ao sistema Vortex. Seu código de acesso é:</p>
+            <p style="color: #2f00ff; margin-left: 25rem;"><b>{codigoAcesso}<b></p>
+            <h4 style="margin-left: 15rem;">
+              <b>Insira o código de acesso no campo requerido.</b>
+              <br><p style="margin-left: 1rem; margin-top: 1px;">Se não foi você, ignore esta mensagem.</p>
+              <br><p style="margin-left: 1rem; font-size: 12px; font-style: italic; margin-top: 2px;">Este é um email automático, favor não responder.</p>
+            </h4>
+            <br><p style="margin-left: 1rem; font-size: 12px; font-style: italic; margin-top: 5px;">Atenciosamente, <br>Equipe Vortex</p>
+        </<body>
+          """
+          
+          msg = email.message.Message()
+          msg['Subject'] = "Código de acesso - Planner Vortex"
+          msg['From'] = 'suporte.pvortex@gmail.com'
+          msg['To'] = f'{emailRecuperar}'
+          password = 'yncjnzadbzofoggj' 
+          msg.add_header('Content-Type', 'text/html')
+          msg.set_payload(corpo_email )
+      
+          s = smtplib.SMTP('smtp.gmail.com: 587')
+          s.starttls()
+          
+          s.login(msg['From'], password)
+          s.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
+          print('Email enviado')
+          conexao = iniciar_conexao()
+          teste = str(codigoAcesso)
+        
+          inserir = "INSERT INTO codigos(codigo) VALUES ("+(teste)+")"
+          inserir_usuario(conexao, inserir)
+         
+          return redirect("/codigoAcesso")
+          
+    
+      else:
+        return render_template("recuperar.html", resultado = "Email não encontrado. Tente novamente.")
+      
+      return redirect('/recuperar')
+
+#Classe atividades
+
+        
+def adicionarAtividade():
+    conexao = iniciar_conexao()
+
+    nomeAtv = request.form['nomeAtv']
+    dataAtv = request.form['dataAtv']
+    descricaoAtv = request.form['descricaoAtv']
+
+    user = Usuario(0,0,0,0)
+    nomeUsuario = (user.acessarInformacoes())[0]
+  
+    buscarID = f"SELECT id FROM usuarios WHERE nome  == '{nomeUsuario}'"
+    idUsuario = buscando_dados(conexao, buscarID)
+  
+    print(idUsuario)
+  
+    str(nomeAtv)
+    str(dataAtv)
+    str(descricaoAtv)
+    
+    SQL_buscar_dados = f"INSERT INTO atividades(idUsuario, nomeAtividade, dataAtividade, descricaoAtividade) VALUES ('{idUsuario}', '{nomeAtv}', '{dataAtv}', '{descricaoAtv}')"
+
+    inserir_atividade(conexao, SQL_buscar_dados)
+
+    return redirect('/atividades')
+  
+def listarAtividades():
+    conexao = iniciar_conexao()
+  
+    global dados
+    user = Usuario(0,0,0,0)
+    nomeUsuario = (user.acessarInformacoes())[0]
+    
+    buscarID = f"SELECT id FROM usuarios WHERE nome  == '{nomeUsuario}'"
+    idUsuario = buscando_dados(conexao, buscarID)
+  
+    conexao = iniciar_conexao()
+  
+    buscar_atividade = f"SELECT * FROM atividades WHERE idUsuario = '{idUsuario}'"
+    dados = buscando_dados(conexao, buscar_atividade)
+  
+    return dados
+
+
+#Redefinir senha
+@app.route('/redefinir', methods = ['post', 'get'])
+def redefinir():
+  
+    conexao = iniciar_conexao()
+  
+    senhaNova = request.form['senha-redefinir']
+    emailaux = request.form['emailvalido']
+  
+    emailUser = str(emailaux)
+    
+    buscar = "SELECT * FROM usuarios"
+    aux = buscando_dados(conexao, buscar)
+  
+    for index in range(len(aux)):
+      for busca in range(4):
+        lista = aux[index]
+        
+        if emailUser == lista[busca]:
+          confirmEmail = True
+  
+    if confirmEmail == True:
+      atualizar = "UPDATE usuarios SET senha = '"+senhaNova+"'  WHERE email = '"+emailUser+"'"
+      alterar_dados(conexao, atualizar) 
+      
+      return redirect("/login")
+  
+    return redirect("/password")
+
+
+
+  
+#Validar código de acesso
+@app.route("/validarCodigo", methods = ['post', 'get'])
+def validar_codigo():
+    conexao = iniciar_conexao()
+    
+    codigo = request.form['codigo-email']
+  
+    buscar = "SELECT * FROM codigos"
+    active = buscando_dados(conexao, buscar)
+    var = 'Código inválido'
+    for index in range(len(active)):
+        for busca in range(1):
+          lista = active[index]
+  
+          if codigo == lista[busca]:
+            dropar = "DELETE FROM codigos WHERE codigo "
+            deletar_tabela(conexao, dropar)
+            return redirect('/password')
+            
+      
+    return render_template('codigoAcesso.html', resultado = var)
+
+
+  
+#Função de cadastro de usuários
+@app.route('/cadastrar', methods = ["post", "get"])
+def recebe_cadastro():
+  return  receber_cadastro()
   
 #Função de validação de login
 @app.route('/logar', methods = ["post", "get"])
-
-def realizar_login():
-  try:
-      conexao = iniciar_conexao()
-      global nome_login
-      nome_login = request.form['username']
-      senha_login = request.form['senha']
-
-      global nome_user
-      nome_user = nome_login
-
-      str(nome_login)
-      str(senha_login)
-
-      print(nome_login, senha_login)
-
-      SQL_buscar_dados = "SELECT * FROM usuarios"
-      aux = buscando_dados(conexao, SQL_buscar_dados)
-      print(aux)
-    
-      for index in range(len(aux)):
-        for busca in range(4):
-          lista = aux[index]
-
-          if nome_login == lista[busca]:
-            confirmNome = True
-
-      for index in range(len(aux)):
-        for busca in range(4):
-          lista = aux[index]
-          if senha_login == lista[busca]:
-            confirmPass = True
+def realiza_login():
+  return realizar_login()
   
-            
-      if confirmPass == True and confirmNome == True: 
-        return render_template('planner.html', nome_user = nome_login)
-
-  except:
-      print('\033[1;49;31mErro ao realizar login de usuário.\033[m')
-
-  return render_template("login.html", erro = "Não foi possível validar os dados. Tente novamente.")
-
-
-#Função de recuperação de senha
-@app.route('/recuperar', methods = ["post", "get"])
-def recuperar_senha():
-  return render_template("recuperar.html")
+#Função validação de email
+@app.route('/validar', methods = ["post", "get"])
+def valida_email():
+  return validar_email()
   
-#Criar tabela usuário
+#Função de adicionar atividades
+@app.route('/adicionar', methods = ["post", "get"])
+def adiciona_atividade():
+    return adicionarAtividade()
+
+#Criação de tabela no banco
 def tabelaUsuarios():
     conexao = iniciar_conexao()
   
@@ -139,24 +368,42 @@ def tabelaUsuarios():
     """
     criar_tabela(conexao, tabela)
 
+
 def tabelaAtividades():
     conexao = iniciar_conexao()
 
     tabelaAtv = """
-      CREATE TABLE IF NOT EXISTS usuarios(
+      CREATE TABLE IF NOT EXISTS atividades(
       idAtividade integer PRIMARY KEY AUTOINCREMENT,
       nomeAtividade text NOT NULL,
       dataAtividade text NOT NULL,
-      descricaoAtividade text NOT NULL
+      descricaoAtividade text NOT NULL,
+      idUsuario integer,
+      foreign key(idUsuario) references usuarios(id)
       );
     """
 
     criar_tabela(conexao, tabelaAtv)
+
+def tabelaCodigos():
+    conexao = iniciar_conexao()
+  
+    tabela_codigos =  """CREATE TABLE IF NOT EXISTS codigos(
+      codigo text NOT NULL
+      );
+    """
+    criar_tabela(conexao, tabela_codigos)
+      
   
 #Chamando funções
 tabelaUsuarios()
+tabelaAtividades()
+tabelaCodigos()
 
-  
+#Objeto
+user = Usuario(0,0,0,0)
+activity = Atividade(0,0,0,0)
+
 #Ativando servidor
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=81, debug=True)

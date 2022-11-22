@@ -35,10 +35,11 @@
         <div class="row">
           <div class="caixa-cadastro">
                   <form id="login-espaco" class="box" action="/cadastrar" method="post">
-                          <input type="text" id="nome" name="nome" placeholder="Nome de usuário"/>
-                          <input type="text" id="gmail" name="gmail" placeholder="Email">
-                          <input type="text" id="senha" name="senha" placeholder="Senha">
+                          <input minlength="1" type="text" id="nome" name="nome" placeholder="Nome de usuário"/>
+                          <input type="email" id="gmail" name="gmail" placeholder="Email">
+                          <input minlength='8' maxlength="20" type="password" id="senha" name="senha" placeholder="Senha">
                           <input type="submit" name="botão" value="Cadastrar">
+                          <p id="messageError">{{resultado}}</p>
                   </form>
           </div>
           

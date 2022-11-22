@@ -422,6 +422,7 @@ section#tecnologias #tec{
   text-align: center;
 }
 
+/*CSS LOGIN*/
 #body-login{
   display: flex;
   min-height: 100vh;
@@ -534,8 +535,6 @@ section#tecnologias #tec{
   width: 200px;
   border-color: #149DDD;
 }
-
-
 
 .box input[type = "submit"]{
   cursor: pointer;
@@ -1098,7 +1097,7 @@ input:placeholder-shown {
   margin-top: 5rem;
 }
 
-.table thead{
+.calendar-table .calendar-items{
   color: #000000;
   font-weight: 600;
   text-transform: uppercase;
@@ -1114,12 +1113,12 @@ input:placeholder-shown {
   text-align: center;  
 }
 
-.table tbody td{
+.calendar-table tbody td{
    color: #000000;
    cursor: pointer;
 }
 
-.table tbody td:hover{
+.calendar-table tbody td:hover{
   background: #00fbff;
 }
 
@@ -1151,6 +1150,7 @@ input:placeholder-shown {
   font-family: 'Kanit', Arial;
 }
 
+/*CSS RECUPERAÇÃO DE SENHA*/
 #recuperacao{
   font-size: 13px;
   color: #149DDD;
@@ -1159,14 +1159,22 @@ input:placeholder-shown {
   margin-left: 5rem;
 }
 
+#logo-recuperar{
+  color: #fff;
+  margin-left: 61rem;
+  margin-top: 5rem;
+}
+
+#text-redefinir{
+  color: #fff;
+  margin-left: 52rem;
+  margin-top: 2rem;
+}
+
 #messageError{
   margin-top: 15px;
   color: #f50000;
   font-size: 13px;
-}
-
-#main-recuperar{
-  background: #000;
 }
 
 .caixa-recuperar{
@@ -1178,8 +1186,8 @@ input:placeholder-shown {
   color: #fff;
   border-radius: 5px;
 
-  margin-left: 15rem;
-  margin-top: 15rem;
+  margin-left: 45rem;
+  margin-top: 5rem;
   position: relative;
   align-items: center;
   justify-content: center;
@@ -1200,19 +1208,180 @@ input:placeholder-shown {
   animation: animate 10s linear alternate infinite;
 }
 
+.caixa-recuperar input[type = "text"]{
+  display: block;
+  font-family: 'Kanit', Arial;
+  
+  width: 200px;
+  margin: 20px auto;
+  padding: 14px, 10px;
+  
+  
+  color: #787878;
+  outline: none;
+  background: none;
+  text-align: center;
+  
+  border: 0;
+  bordedr-radius: 24px;
+  border: 2px solid #fff;
+  transition: 0.25s;
+}
 
+.caixa-recuperar input[type = "submit"]{
+  cursor: pointer;
+  outline: none;
+  background: none;
+  text-align: center;
+  margin-left: 2rem;
 
+  color: #fff;
+  padding: 14px 40px;
+  border-radius: 24px;
+  border: 2px solid #149DDD;
+  
+  transition: 0.25s;
+}
 
 /*CSS ATIVIDADE*/
 .body-atividades{
-  background:#000;
-  margin-top:110px;
+  
   color:#fff;
+  font-family: 'Kanit', Arial;
+  background:#000;
+  
+  margin-top: 170px;
 }
 
+.principal-atividades{
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
 
-#logo-recuperar{
+.caixa-adicionadas{
+  align-items: center;
+  justify-content: center;
+}
+
+.caixa-adicionar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.titulo-atividades-adicionadas{
+  text-align: center;
+}
+.titulo-form-atividades{
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-top: 2px solid #ffffff;
+}
+
+.adicionadas td{
   color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  background: #05222e;
+  border: 2px solid #000000;
 }
 
-.caixa-
+.adicionadas tbody td:hover{
+  cursor: none;
+  background: #bfc0c0;
+}
+
+.numeroAtv, .nameAtv, .dateAtv, .descAtv{
+  color: #fff;
+  text-align: center;
+}
+
+.data, .nome{
+  margin-left: 1rem;
+}
+
+.all-adc{
+  display: flex;
+  justify-content: center;
+}
+
+.box-atividade{
+  display: fixed;
+  width: 600px;
+  height: 570px;
+
+  color: #fff;
+  background: #072b3b;
+  border-radius: 5px;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.box-atividade input[type="text"], .box-atividade input[type="date"]{
+  
+  width: 150px;
+  margin: 20px 5px;
+  margin-top: 1px;
+
+  color: #fff;
+  outline: none;
+  background: none;
+  text-align: center;
+
+  border: 0;
+  border-radius: 24px;
+  border: 2px solid #fff;
+  transition: 0.25s;
+}
+
+#description{
+  margin-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+#descricao1{
+  margin-top: 1rem;
+  margin-left: 1.5rem;
+  
+  padding:1rem;
+  
+  width: 550px;
+  height: 250px;
+  border-radius: 15px;
+}
+
+.box-atividade input[type = "submit"]{
+  cursor: pointer;
+  outline: none;
+  background: none;
+  text-align: center;
+  margin-left: 13rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  
+  color: #fff;
+  padding: 14px 40px;
+  border-radius: 24px;
+  border: 2px solid #ffffff;
+  
+  transition: 0.25s;
+}
+
+
+/*CSS CÓDIGO DE ACESSO*/
+.body-codigo{
+  display: flex;
+  min-height: 100vh;
+
+  color:#fff;
+  font-family: 'Kanit', Arial;
+  background: #000;
+  
+  margin-top: 15rem;
+  box-sizing: border-box;
+}
+

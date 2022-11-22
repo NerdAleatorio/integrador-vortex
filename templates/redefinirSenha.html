@@ -16,12 +16,13 @@
   <div class="row">
           <div>
             <a href="/"><img id="logo-recuperar" src="static/img/vortex.png"/></a>
-            <h1 id="text-redefinir">Recupere sua senha</h1>
+            <h1 id="text-redefinir">Redefina sua senha</h1>
           </div>
           <div class="caixa-recuperar">
-                  <form id="login-espaco" class="box" action="/validar" method="post">                
-                          <input type="text" id="gmail" name="email-recuperar" placeholder="Email">                          
-                          <input type="submit" name="botão" value="Recuperar">
+                  <form id="login-espaco" class="box" action="/redefinir" method="post">          
+                          <input type='text' name="emailvalido" placeholder="Email">
+                          <input type="text" id="senha" name="senha-redefinir" placeholder="Nova Senha">      
+                          <input type="submit" name="botão" value="Redefinir">
                           <p id="messageError">{{resultado}}</p>
                   </form>
           </div>

@@ -13,15 +13,15 @@
 </head>
 
 <body class="body-planner">
-  <div class="row">
+    <div class="row">
           <div>
             <a href="/"><img id="logo-recuperar" src="static/img/vortex.png"/></a>
             <h1 id="text-redefinir">Recupere sua senha</h1>
           </div>
           <div class="caixa-recuperar">
-                  <form id="login-espaco" class="box" action="/validar" method="post">                
-                          <input type="text" id="gmail" name="email-recuperar" placeholder="Email">                          
-                          <input type="submit" name="botão" value="Recuperar">
+                  <form id="login-espaco" class="box" action="/validarCodigo" method="post">                
+                          <input type="text" name="codigo-email" placeholder="Código de Acesso">                       
+                          <input type="submit" name="botão" value="Enviar">
                           <p id="messageError">{{resultado}}</p>
                   </form>
           </div>
