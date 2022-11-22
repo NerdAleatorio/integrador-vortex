@@ -11,6 +11,12 @@ from flask.globals import request
 from conexao import *
 
 global idUsuario
+global usuariosConectados
+usuariosConectados = []
+global nome_login
+nome_login = 0
+
+
 
 #Código principal
 app = Flask(__name__)
@@ -70,15 +76,15 @@ def atualizar_Atividade():
   return render_template("atualizarAtv.html")
   
 #Classe usuário
-class Usuario:
-      def __init__(self, nomeUsuario, emailUsuario, senhaUsuario, buscar_id):
+class Usuarios:
+      def __init__(self, nomeUsuario, emailUsuario, senhaUsuario, usuarioID):
             self.nomeUsuario = nomeUsuario
             self.emailUsuario = emailUsuario
             self.senhaUsuario = senhaUsuario
-            self.buscar_id = buscar_id
+            self.usuarioID = usuarioID
 
-      def acessarInformacoes(self):
-            informacoesUsuario = [self.nomeUsuario, self.emailUsuario, self.senhaUsuario]
+      def acessarInformacoesUsuario(self):
+            informacoesUsuario = [self.nomeUsuario, self.emailUsuario, self.senhaUsuario, self.usuarioID]
             return informacoesUsuario
         
 class Atividade:
@@ -88,7 +94,7 @@ class Atividade:
           self.dataAtividade = dataAtividade
           self.descricaoAtividade = descricaoAtividade
 
-      def acessarInformacoesAtividade(self):
+      def acessarInformacoesAtividades(self):
           informacoesAtividades = [self.idAtividade, self.nomeAtividade]
           return informacoesAtividades
         
@@ -132,11 +138,10 @@ def receber_cadastro():
         
 def realizar_login():
       try:
-        user = Usuario(0,0,0,0)
-        
+        user = Usuarios(0,0,0,0)
         conexao = iniciar_conexao()
         
-        global nome_login
+        
         nome_login = request.form['username']
         senha_login = request.form['senha']
         
@@ -145,7 +150,6 @@ def realizar_login():
   
         SQL_buscar_dados = "SELECT * FROM usuarios"
         aux = buscando_dados(conexao, SQL_buscar_dados)
-      
         
         for index in range(len(aux)):
           for busca in range(4):
@@ -153,6 +157,9 @@ def realizar_login():
             
             if nome_login == lista[busca]:
               confirmNome = True
+              usuariosConectados.append(nome_login)
+              for busca in usuariosConectados:
+                print(busca)
   
         for index in range(len(aux)):
           for busca in range(4):
@@ -179,7 +186,6 @@ def validar_email():
       emailRecuperar = request.form['email-recuperar']
       SQL_buscar_dados = "SELECT * FROM usuarios"
       active = buscando_dados(conexao, SQL_buscar_dados) 
-
       
       for index in range(len(active)):
           for busca in range(4):
@@ -191,9 +197,12 @@ def validar_email():
       if confirmEmail == True:
           codigoAcesso = random.randint(200,1000)
         
+          SQL_buscar_nome = f"SELECT nome FROM usuarios WHERE email = {emailRecuperar}"
+          nomeUsuario = buscando_dados(conexao, SQL_buscar_nome)
+        
           corpo_email = f"""
           <body style="font-size: 16px; border: 2px solid #000; border-radius: 20px; color: #000;">  
-            <p style="margin-left: 1rem;"><b>Olá, usuário Vortex.</b><br>Você solicitou a recuperação de sua senha de acesso ao sistema Vortex. Seu código de acesso é:</p>
+            <p style="margin-left: 1rem;"><b>Olá, {nomeUsuario} ex.</b><br>Você solicitou a recuperação de sua senha de acesso ao sistema Vortex. Seu código de acesso é:</p>
             <p style="color: #2f00ff; margin-left: 25rem;"><b>{codigoAcesso}<b></p>
             <h4 style="margin-left: 15rem;">
               <b>Insira o código de acesso no campo requerido.</b>
@@ -242,10 +251,9 @@ def adicionarAtividade():
     dataAtv = request.form['dataAtv']
     descricaoAtv = request.form['descricaoAtv']
 
-    user = Usuario(0,0,0,0)
-    nomeUsuario = (user.acessarInformacoes())[0]
+    
   
-    buscarID = f"SELECT id FROM usuarios WHERE nome  == '{nomeUsuario}'"
+    buscarID = f"SELECT id FROM usuarios WHERE nome  == '{nome_login}'"
     idUsuario = buscando_dados(conexao, buscarID)
   
     print(idUsuario)
@@ -253,6 +261,7 @@ def adicionarAtividade():
     str(nomeAtv)
     str(dataAtv)
     str(descricaoAtv)
+  
     
     SQL_buscar_dados = f"INSERT INTO atividades(idUsuario, nomeAtividade, dataAtividade, descricaoAtividade) VALUES ('{idUsuario}', '{nomeAtv}', '{dataAtv}', '{descricaoAtv}')"
 
@@ -264,8 +273,8 @@ def listarAtividades():
     conexao = iniciar_conexao()
   
     global dados
-    user = Usuario(0,0,0,0)
-    nomeUsuario = (user.acessarInformacoes())[0]
+    user = Usuarios(0,0,0,0)
+    nomeUsuario = (activity.acessarInformacoesAtividades())[0]
     
     buscarID = f"SELECT id FROM usuarios WHERE nome  == '{nomeUsuario}'"
     idUsuario = buscando_dados(conexao, buscarID)
@@ -400,9 +409,7 @@ tabelaUsuarios()
 tabelaAtividades()
 tabelaCodigos()
 
-#Objeto
-user = Usuario(0,0,0,0)
-activity = Atividade(0,0,0,0)
+
 
 #Ativando servidor
 if __name__ == '__main__':

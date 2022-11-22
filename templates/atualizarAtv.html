@@ -12,53 +12,43 @@
 </head>
 
 
-<body class='body-atividades'>
+<body class='body-atualizar'>
   <aside id="header">
       <section class="profile">
         <a href="/"><img id="logo" class="mt-4" src="/static/img/vortex.png" alt="fundo"/></a>
         <div class="info-cabecalho">
               <a class="item-menu" href="/planner">Inicio</a>
               <a class="item-menu" href="/tasklist">Task List</a>
-              <a class="item-menu" href="/calendario">Calendário</a>
         </div>
       </section>
     </aside>
 
-    <main class="principal-atividades">
+    <main class="principal-atualizar">
       
       <div class="container-sm">
-        <div class="tabelas-att-atividades">
-                <div class="caixa-adicionadas">
-                    <h1 class="titulo-atividades-adicionadas">Minhas <span id="cor_azul">atividades</span></h1>
+        <div class="tabelas-atividades">
+                <div class="caixa-atualizadas">
                     <table class="table">
-                      <thead>
-                          <tr>
-                            <th class="nameAtv" scope="col">Nome</th>
-                            <th class="dateAtv" scope="col">Data</th>
-                            <th class="descAtv" scope="col">Descrição</th>
-                            <th class="descAtv" scope="col"></th>
-                            <th class="descAtv" scope="col"></th>
-                          </tr>
-                      </thead>
+                     
                       
-                      <tbody class="adicionadas">
+                      <tbody class="atualizar">
                           {% for item in mostrar %}   
                           <tr>
                             <td id="item-nome">{{item[1]}}</td>
                             <td id="item-data">{{item[2]}}</td>
                             <td id="item-descricao">{{item[3]}}</td>
                             <td><a class="btn btn-danger" href='/deletar/{{item["CPF"]}}'>Deletar</a></td>
-                            <td><a class="btn btn-primary"  href='/update/{{item["CPF"]}}' >Atualizar</a></td>
+                            <td><a class="btn btn-primary"  href="/atualizarAtv" >Atualizar</a></td>
                           </tr>
                           {% endfor %}
                       </tbody>
                     </table>
                 </div>
                 
-              <h1 class="titulo-form-atividades"><span id="cor_azul">Atualizar</span> atividades</h1>
+              <h1 class="titulo-form-atualizar"><span id="cor_azul">Atualizar</span> atividades</h1>
                 
-              <div class="caixa-adicionar">
-                <form class="box-atividade" action="/adicionar" method="post">
+              <div class="caixa-atualizar">
+                <form class="box-atualizar" action="/atualizar" method="post">
                   <div class="all-adc row">
                   <div class="nome-input col ml-1 mr-1 mb-3">
                       <label for="nome" class="nome form-label">Nome</label>
@@ -76,7 +66,7 @@
                       <textarea class="descricao" id="descricao1" name="descricaoAtv"></textarea>
                   </div>
                   
-                  <input type="submit" class="btn btn-primary" value="Adicionar"></input>
+                  <input type="submit" class="btn btn-primary" value="Atualizar"></input>
                 </form>
             <p id="messageError">{{erro}}</p>
                 </div>

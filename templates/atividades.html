@@ -47,8 +47,9 @@
                             <td id="item-data">{{item[2]}}</td>
                             <td id="item-descricao">{{item[3]}}</td>
                             <td><a class="btn btn-danger" href='/deletar/{{item["CPF"]}}'>Deletar</a></td>
-                            <td><a class="btn btn-primary"  href='/update/{{item["CPF"]}}' >Atualizar</a></td>
+                            <td><a class="btn btn-primary"  href="/atualizarAtv" >Atualizar</a></td>
                           </tr>
+<!--                         '/update/{{item["CPF"]}}' -->
                           {% endfor %}
                       </tbody>
                     </table>
