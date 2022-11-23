@@ -99,7 +99,7 @@ class Usuarios:
             informacoesUsuario = [self.nomeUsuario, self.emailUsuario, self.senhaUsuario, self.usuarioID, self.conectado]
             return informacoesUsuario
 
-#Classe usuário
+#Classe Atividade
 class Atividade:
       def __init__(self, idAtividade, nomeAtividade, dataAtividade, descricaoAtividade):
           self.idAtividade = idAtividade
@@ -139,10 +139,7 @@ def receber_cadastro():
             if email == lista[busca]:
               var = "Cadastro já existente"
               return render_template("cadastro.html", resultado = var)
-
-      
-        print(nome, email, senha)
-        
+    
         SQL_inserir_usuario = "INSERT INTO usuarios(nome, email, senha) VALUES ('"+(nome)+"', '"+(email)+"', '"+(senha)+"')"
         inserir_usuario(conexao, SQL_inserir_usuario)
 
@@ -241,16 +238,15 @@ def validar_email():
           password = 'yncjnzadbzofoggj' 
           msg.add_header('Content-Type', 'text/html')
           msg.set_payload(corpo_email )
-      
           s = smtplib.SMTP('smtp.gmail.com: 587')
           s.starttls()
-          
           s.login(msg['From'], password)
           s.sendmail(msg['From'], [msg['To']], msg.as_string().encode('utf-8'))
           print('Email enviado')
+
+        
           conexao = iniciar_conexao()
           teste = str(codigoAcesso)
-        
           inserir = "INSERT INTO codigos(codigo) VALUES ("+(teste)+")"
           inserir_usuario(conexao, inserir)
          
@@ -280,7 +276,6 @@ def adicionarAtividade():
     str(dataAtv)
     str(descricaoAtv)
   
-    
     SQL_buscar_dados = f"INSERT INTO atividades(idUsuario, nomeAtividade, dataAtividade, descricaoAtividade) VALUES ('{user.usuarioID}', '{nomeAtv}', '{dataAtv}', '{descricaoAtv}')"
 
     inserir_atividade(conexao, SQL_buscar_dados)
@@ -300,7 +295,6 @@ def listarAtividades():
 #Redefinir senha
 @app.route('/redefinir', methods = ['post', 'get'])
 def redefinir():
-  
     conexao = iniciar_conexao()
   
     senhaNova = request.form['senha-redefinir']
@@ -321,7 +315,6 @@ def redefinir():
     if confirmEmail == True:
       atualizar = "UPDATE usuarios SET senha = '"+senhaNova+"'  WHERE email = '"+emailUser+"'"
       alterar_dados(conexao, atualizar) 
-      
       return redirect("/login")
   
     return redirect("/password")
