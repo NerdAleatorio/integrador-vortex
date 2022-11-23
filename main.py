@@ -13,10 +13,6 @@ from conexao import *
 global idUsuario
 global usuariosConectados
 usuariosConectados = []
-global nome_login
-nome_login = 0
-
-
 
 #Código principal
 app = Flask(__name__)
@@ -39,7 +35,7 @@ def login():
 #Renderizando tela do planner
 @app.route('/planner', methods = ["post", "get"])
 def planner():
-        return render_template("planner.html")
+        return render_template('planner.html', nome_user = user.nomeUsuario)
 
 #Renderizando tela Task List
 @app.route('/tasklist', methods = ["post", "get"])
@@ -77,16 +73,33 @@ def atualizar_Atividade():
   
 #Classe usuário
 class Usuarios:
-      def __init__(self, nomeUsuario, emailUsuario, senhaUsuario, usuarioID):
+      def __init__(self, nomeUsuario, emailUsuario, senhaUsuario, usuarioID, conectado):
             self.nomeUsuario = nomeUsuario
             self.emailUsuario = emailUsuario
             self.senhaUsuario = senhaUsuario
             self.usuarioID = usuarioID
+            self.conectado = conectado
 
-      def acessarInformacoesUsuario(self):
-            informacoesUsuario = [self.nomeUsuario, self.emailUsuario, self.senhaUsuario, self.usuarioID]
-            return informacoesUsuario
+      def getNome(self):
+            return self.nomeUsuario
+
+      def getEmail(self):
+            return self.emailUsuario
+
+      def getSenha(self):
+            return self.senhaUsuario
         
+      def getID(self):
+            return self.usuarioID
+
+      def usuarioOnline(self):
+            return self.conectado
+        
+      def acessarInformacoesUsuario(self):
+            informacoesUsuario = [self.nomeUsuario, self.emailUsuario, self.senhaUsuario, self.usuarioID, self.conectado]
+            return informacoesUsuario
+
+#Classe usuário
 class Atividade:
       def __init__(self, idAtividade, nomeAtividade, dataAtividade, descricaoAtividade):
           self.idAtividade = idAtividade
@@ -105,11 +118,16 @@ def receber_cadastro():
         nome = request.form['nome']
         email = request.form['gmail']
         senha = request.form['senha']
-  
+      
         str(nome)
         str(email)
         str(senha)
 
+        user = Usuarios(0,0,0,0,0)
+        user.nomeUsuario = nome
+        user.emailUsuario = email
+        user.senhaUsuario = senha
+        
         SQL_buscar_dados = "SELECT * FROM usuarios"
         aux = buscando_dados(conexao, SQL_buscar_dados)
 
@@ -138,16 +156,14 @@ def receber_cadastro():
         
 def realizar_login():
       try:
-        user = Usuarios(0,0,0,0)
         conexao = iniciar_conexao()
-        
         
         nome_login = request.form['username']
         senha_login = request.form['senha']
         
         str(nome_login)
         str(senha_login)
-  
+        
         SQL_buscar_dados = "SELECT * FROM usuarios"
         aux = buscando_dados(conexao, SQL_buscar_dados)
         
@@ -157,10 +173,7 @@ def realizar_login():
             
             if nome_login == lista[busca]:
               confirmNome = True
-              usuariosConectados.append(nome_login)
-              for busca in usuariosConectados:
-                print(busca)
-  
+                
         for index in range(len(aux)):
           for busca in range(4):
             lista = aux[index]
@@ -168,14 +181,22 @@ def realizar_login():
               confirmPass = True
     
               
-        if confirmPass == True and confirmNome == True: 
-          return render_template('planner.html', nome_user = nome_login)
+        if confirmPass == True and confirmNome == True:  
+          user = Usuarios(0,0,0,0,0)
+          user.nomeUsuario = nome_login
+          user.senhaUsuario = senha_login
+          user.conectado = True
+          
+          usuariosConectados.append(user)
+          for busca in usuariosConectados:
+              print(busca)
+            
+          return render_template('planner.html', nome_user = user.nomeUsuario)
 
       except:
           print('\033[1;49;31mErro ao realizar login de usuário.\033[m')
 
       return render_template("login.html", erro = "Não foi possível validar os dados. Tente novamente.")
-        
         
 def validar_email():
       global confirmEmail 
@@ -202,7 +223,7 @@ def validar_email():
         
           corpo_email = f"""
           <body style="font-size: 16px; border: 2px solid #000; border-radius: 20px; color: #000;">  
-            <p style="margin-left: 1rem;"><b>Olá, {nomeUsuario} ex.</b><br>Você solicitou a recuperação de sua senha de acesso ao sistema Vortex. Seu código de acesso é:</p>
+            <p style="margin-left: 1rem;"><b>Olá, {nomeUsuario}</b><br>Você solicitou a recuperação de sua senha de acesso ao sistema Vortex. Seu código de acesso é:</p>
             <p style="color: #2f00ff; margin-left: 25rem;"><b>{codigoAcesso}<b></p>
             <h4 style="margin-left: 15rem;">
               <b>Insira o código de acesso no campo requerido.</b>
@@ -241,8 +262,6 @@ def validar_email():
       
       return redirect('/recuperar')
 
-#Classe atividades
-
         
 def adicionarAtividade():
     conexao = iniciar_conexao()
@@ -251,37 +270,28 @@ def adicionarAtividade():
     dataAtv = request.form['dataAtv']
     descricaoAtv = request.form['descricaoAtv']
 
-    
-  
-    buscarID = f"SELECT id FROM usuarios WHERE nome  == '{nome_login}'"
+    buscarID = f"SELECT id FROM usuarios WHERE nome  == '{user.nomeUsuario}'"
     idUsuario = buscando_dados(conexao, buscarID)
+    user.usuarioID = idUsuario
   
-    print(idUsuario)
+    print(user.usuarioID)
   
     str(nomeAtv)
     str(dataAtv)
     str(descricaoAtv)
   
     
-    SQL_buscar_dados = f"INSERT INTO atividades(idUsuario, nomeAtividade, dataAtividade, descricaoAtividade) VALUES ('{idUsuario}', '{nomeAtv}', '{dataAtv}', '{descricaoAtv}')"
+    SQL_buscar_dados = f"INSERT INTO atividades(idUsuario, nomeAtividade, dataAtividade, descricaoAtividade) VALUES ('{user.usuarioID}', '{nomeAtv}', '{dataAtv}', '{descricaoAtv}')"
 
     inserir_atividade(conexao, SQL_buscar_dados)
 
-    return redirect('/atividades')
+    return render_template('planner.html', nome_user = user.nomeUsuario)
   
 def listarAtividades():
-    conexao = iniciar_conexao()
-  
     global dados
-    user = Usuarios(0,0,0,0)
-    nomeUsuario = (activity.acessarInformacoesAtividades())[0]
-    
-    buscarID = f"SELECT id FROM usuarios WHERE nome  == '{nomeUsuario}'"
-    idUsuario = buscando_dados(conexao, buscarID)
-  
     conexao = iniciar_conexao()
   
-    buscar_atividade = f"SELECT * FROM atividades WHERE idUsuario = '{idUsuario}'"
+    buscar_atividade = f"SELECT * FROM atividades WHERE idUsuario = '{user.usuarioID}'"
     dados = buscando_dados(conexao, buscar_atividade)
   
     return dados
@@ -338,7 +348,7 @@ def validar_codigo():
             deletar_tabela(conexao, dropar)
             return redirect('/password')
             
-      
+    
     return render_template('codigoAcesso.html', resultado = var)
 
 
@@ -410,6 +420,7 @@ tabelaAtividades()
 tabelaCodigos()
 
 
+user = Usuarios(0,0,0,0,0)
 
 #Ativando servidor
 if __name__ == '__main__':

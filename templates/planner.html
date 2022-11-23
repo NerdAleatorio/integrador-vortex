@@ -19,7 +19,6 @@
         <div class="info-cabecalho">
               <a class="item-menu" href="/atividades">Minhas atividades</a>
               <a class="item-menu" href="/tasklist">Task List</a>
-              <a class="item-menu" href="/calendar">Calendário</a>
               <a class="item-menu" href="/">Sair</a>
 
         </div>
@@ -56,82 +55,10 @@
                     <a href="/tasklist">    
                        <button class="botao-task" type="button"><div>TASK LIST</div></button>
                     </a>
-                    
-                    <a href="/calendario">    
-                      <button class="botao-calendar" type="button"><div>CALENDÁRIO</div></button>
-                    </a>
-                    
                   </li>
                 </div>
           </div>
       </section>
-
-      <section class="pagina-semanal ow m-0 p-0">
-        <h2 id="cabecalho-semanal">Página da <strong><span id="cor_azul">Semana</span></strong></h2>
-
-        <div class="caixa-relogio">
-          <div class="relogio">
-            <h2 class="js-data">[Data]</h2>
-          </div>            
-        </div>
-
-        <div class="row">
-          <div class="dia col">
-            <div class="dia-body">
-              <h5 id="segunda">Segunda-feira</h5>
-              <p id="segunda-tasks"></p>
-            </div>
-          </div>
-          
-          <div class="dia col">
-            <div class="dia-body">
-              <h5 id="terca">Terça-feira</h5>
-              <p id="terca-tasks"></p>
-            </div>
-          </div>
-          
-          <div class="dia col">
-            <div class="dia-body">
-              <h5 id="quarta">Quarta-feira</h5>
-              <p id="quarta-tasks"></p>
-            </div>
-            
-          </div>
-          <div class="dia col">
-            <div class="dia-body">
-              <h5 id="quinta">Quinta-feira</h5>
-              <p id="quinta-tasks"></p>
-            </div>
-          </div>
-          <div class="dia col">
-            <div class="dia-body">
-              <h5 id="sexta">Sexta-feira</h5>
-              <p id="sexta-tasks"></p>
-            </div>
-          </div>
-      </div>
-
-      </section>
-      
     </main>
-  
-  <script>
-        semana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
-        meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-        function configurarData() {
-            let data = new Date();
-            let mes = data.getMonth();
-            let ano = data.getFullYear();
-            let dia = data.getDay();
-            let diaNum = data.getDate();
-            
-            let areaData = document.querySelector(".js-data");
-            
-            let completo = semana[dia] + ", " + diaNum + "" + " de " + meses[mes] + " " + "de " + ano
-            
-            areaData.textContent = completo
-          };
-    configurarData();
-  </script>
   </body>
 </html>

@@ -34,7 +34,6 @@ def criar_tabela(conexao, SQL_criar_tabela):
         except sqlite3.Error as var:
           print('\033[1;49;31mComando mal sucedido.\033[m', var)
 
-
 def inserir_usuario(conexao, SQL_inserir_usuario):
         try:
           cursor = conexao.cursor()
