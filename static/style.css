@@ -1253,6 +1253,10 @@ input:placeholder-shown {
   margin-top: 170px;
 }
 
+.table{
+  justify-content: center;
+}
+
 .principal-atividades{
   margin: 0 auto;
   padding: 0;
@@ -1265,21 +1269,20 @@ input:placeholder-shown {
   justify-content: center;
 }
 
-
 .caixa-adicionar{
   display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-left: 10rem;
 }
 
 .titulo-atividades-adicionadas{
   text-align: center;
 }
+
 .titulo-form-atividades{
   text-align: center;
   margin-top: 2rem;
   margin-bottom: 2rem;
-  border-top: 2px solid #ffffff;
+  margin-left: -25rem;
 }
 
 .adicionadas td{
@@ -1372,6 +1375,48 @@ input:placeholder-shown {
   transition: 0.25s;
 }
 
+
+.caixa-remover{
+  display: flex;
+  margin-left: 60rem;
+  margin-top: -30rem;
+}
+
+.box-remover{
+  display: flex;
+  width: 600px;
+  height: 100px;
+
+  color: #fff;
+  background: #072b3b;
+  border-radius: 5px;
+
+  align-items: center;
+  justify-content: center;
+}
+.box-remover input[type = "submit"]{
+  cursor: pointer;
+  outline: none;
+  background: none;
+  text-align: center;
+  margin-left: 13rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  
+  color: #fff;
+  padding: 14px 40px;
+  border-radius: 24px;
+  border: 2px solid #ffffff;
+  
+  transition: 0.25s;
+}
+
+.titulo-form-remover{
+  text-align: center;
+  margin-top: -5rem;
+  margin-left: 25rem;
+  margin-bottom: 2rem;
+}
 
 /*CSS CÓDIGO DE ACESSO*/
 .body-codigo{
@@ -1469,7 +1514,6 @@ input:placeholder-shown {
 }
 
 .box-atualizar input[type="text"], .box-atualizar input[type="date"]{
-  
   width: 150px;
   margin: 20px 5px;
   margin-top: 1px;

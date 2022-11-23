@@ -35,13 +35,12 @@ def login():
 #Renderizando tela do planner
 @app.route('/planner', methods = ["post", "get"])
 def planner():
-        return render_template('planner.html', nome_user = user.nomeUsuario)
+        return render_template('planner.html')
 
 #Renderizando tela Task List
 @app.route('/tasklist', methods = ["post", "get"])
 def tasklist():
         return render_template("tasklist.html")
-
 
 #Renderizando tela de atividades
 @app.route('/atividades', methods = ["post", "get"])
@@ -108,7 +107,7 @@ class Atividade:
           self.descricaoAtividade = descricaoAtividade
 
       def acessarInformacoesAtividades(self):
-          informacoesAtividades = [self.idAtividade, self.nomeAtividade]
+          informacoesAtividades = [self.nomeAtividade, self.dataAtividade, self.descricaoAtividade]
           return informacoesAtividades
         
 def receber_cadastro():
@@ -149,7 +148,7 @@ def receber_cadastro():
     except:
       print('\033[1;49;31mErro ao realizar login de usuário.\033[m')
 
-    return render_template("cadastro.html")
+    return render_template("cadastro.html", resultado = "Erro ao realizar cadastro. Tente novamente.")
         
 def realizar_login():
       try:
@@ -178,17 +177,8 @@ def realizar_login():
               confirmPass = True
     
               
-        if confirmPass == True and confirmNome == True:  
-          user = Usuarios(0,0,0,0,0)
-          user.nomeUsuario = nome_login
-          user.senhaUsuario = senha_login
-          user.conectado = True
-          
-          usuariosConectados.append(user)
-          for busca in usuariosConectados:
-              print(busca)
-            
-          return render_template('planner.html', nome_user = user.nomeUsuario)
+        if confirmPass == True and confirmNome == True:
+          return render_template("planner.html")
 
       except:
           print('\033[1;49;31mErro ao realizar login de usuário.\033[m')
@@ -220,7 +210,7 @@ def validar_email():
         
           corpo_email = f"""
           <body style="font-size: 16px; border: 2px solid #000; border-radius: 20px; color: #000;">  
-            <p style="margin-left: 1rem;"><b>Olá, {nomeUsuario}</b><br>Você solicitou a recuperação de sua senha de acesso ao sistema Vortex. Seu código de acesso é:</p>
+            <p style="margin-left: 1rem;"><b>Olá usuário Vortex!</b><br>Você solicitou a recuperação de sua senha de acesso ao sistema Vortex. Seu código de acesso é:</p>
             <p style="color: #2f00ff; margin-left: 25rem;"><b>{codigoAcesso}<b></p>
             <h4 style="margin-left: 15rem;">
               <b>Insira o código de acesso no campo requerido.</b>
@@ -266,32 +256,49 @@ def adicionarAtividade():
     dataAtv = request.form['dataAtv']
     descricaoAtv = request.form['descricaoAtv']
 
+    str(nomeAtv)
+    str(dataAtv)
+    str(descricaoAtv)
+
     buscarID = f"SELECT id FROM usuarios WHERE nome  == '{user.nomeUsuario}'"
     idUsuario = buscando_dados(conexao, buscarID)
     user.usuarioID = idUsuario
   
     print(user.usuarioID)
   
-    str(nomeAtv)
-    str(dataAtv)
-    str(descricaoAtv)
+    SQL_buscar_dados = f"INSERT INTO atividades(idUsuario, nomeAtividade, dataAtividade, descricaoAtividade) VALUES ('{user.nomeUsuario}', '{nomeAtv}', '{dataAtv}', '{descricaoAtv}')"
+
+    atividade = inserir_atividade(conexao, SQL_buscar_dados)
+
   
-    SQL_buscar_dados = f"INSERT INTO atividades(idUsuario, nomeAtividade, dataAtividade, descricaoAtividade) VALUES ('{user.usuarioID}', '{nomeAtv}', '{dataAtv}', '{descricaoAtv}')"
-
-    inserir_atividade(conexao, SQL_buscar_dados)
-
-    return render_template('planner.html', nome_user = user.nomeUsuario)
+    return redirect('atividades')
   
 def listarAtividades():
     global dados
     conexao = iniciar_conexao()
   
-    buscar_atividade = f"SELECT * FROM atividades WHERE idUsuario = '{user.usuarioID}'"
-    dados = buscando_dados(conexao, buscar_atividade)
+    buscar_atividade = f"SELECT * FROM atividades WHERE idUsuario = '{user.nomeUsuario}'"
   
+    dados = buscando_dados(conexao, buscar_atividade)
+    print(dados)
     return dados
 
 
+def excluirAtividade():
+    try:
+      conexao = iniciar_conexao()
+      nomeAtividadeExcluir = request.form['nomeATV']
+    
+      buscar_atividade = f"DELETE FROM atividades WHERE nomeAtividade = '{nomeAtividadeExcluir}'"
+      ativar = alterar_dados(conexao, buscar_atividade)
+      return redirect('atividades')
+      
+    except:
+      print("Não deu.")
+      
+    return render_template('atvidades.html', erro = "Não foi possível excluir a atividade.")
+
+  
 #Redefinir senha
 @app.route('/redefinir', methods = ['post', 'get'])
 def redefinir():
@@ -318,8 +325,6 @@ def redefinir():
       return redirect("/login")
   
     return redirect("/password")
-
-
 
   
 #Validar código de acesso
@@ -366,6 +371,12 @@ def valida_email():
 def adiciona_atividade():
     return adicionarAtividade()
 
+#Função de adicionar atividades
+@app.route('/deletar', methods = ["post", "get"])
+def exclui_atividade():
+    return excluirAtividade()
+
+  
 #Criação de tabela no banco
 def tabelaUsuarios():
     conexao = iniciar_conexao()

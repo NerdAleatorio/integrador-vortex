@@ -1,5 +1,4 @@
 #Bibliotecas para Banco de Dados
-import pandas as pd
 import sqlite3
 
 

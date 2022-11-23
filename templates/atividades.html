@@ -45,17 +45,16 @@
                             <td id="item-nome">{{item[1]}}</td>
                             <td id="item-data">{{item[2]}}</td>
                             <td id="item-descricao">{{item[3]}}</td>
-                            <td><a class="btn btn-danger" href='/deletar/{{item["CPF"]}}'>Deletar</a></td>
-                            <td><a class="btn btn-primary"  href="/atualizarAtv" >Atualizar</a></td>
+                            <td><a class="" href='/deletar/{{item["idAtividade"]}}'></a></td>
+                            <td><a class=""  href="/atualizarAtv"></a></td>
                           </tr>
-<!--                         '/update/{{item["CPF"]}}' -->
                           {% endfor %}
                       </tbody>
                     </table>
                 </div>
                 
-              <h1 class="titulo-form-atividades"><span id="cor_azul">Adicionar</span> atividades</h1>
-                
+              <h1 class="titulo-form-atividades col"><span id="cor_azul">Adicionar</span> atividades</h1>
+               <h1 class="titulo-form-remover"><span id="cor_azul">Remover</span> atividades</h1>
               <div class="caixa-adicionar">
                 <form class="box-atividade" action="/adicionar" method="post">
                   <div class="all-adc row">
@@ -79,10 +78,22 @@
                 </form>
             <p id="messageError">{{erro}}</p>
                 </div>
+
+         
+                
+              <div class="caixa-remover">
+                <form class="box-remover" action="/deletar" method="post">
+                  <div class="all-adc row">
+                  <div class="nome-input col ml-1 mr-1 mb-3">
+                      <label for="nome" class="nome form-label">Nome</label>
+                      <input type="text" class="form-control" id="nomeAtv" name="nomeATV">
+                  </div>
+                  
+                  <input type="submit" class="btn btn-primary" value="Deletar"></input>
+                  <p id="messageError">{{erro}}</p>
+                </form>
+                </div>
           </div>
         </div>
-    </main>
-
-
-  
+    </main>  
 </body>
