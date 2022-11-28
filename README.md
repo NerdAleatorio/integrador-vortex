@@ -41,10 +41,7 @@ O projeto Vortex foi criado para auxiliar e acompanhar seus usuários no dia a d
 - ``Github``
 - ``Heroku``
 - ``Replit``
-<<<<<<< HEAD
 - ``Bootstrap``
-=======
->>>>>>> origin/main
 
 ## 👨🏻‍🎓 Desenvolvedores
 
